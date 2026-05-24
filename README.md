@@ -2,7 +2,7 @@
 
 # Companions Group
 
-### Dual-brand adult companionship platform — Argentina
+### Brand adult companionship platform escorts marketplace — Argentina
 
 [![Laravel](https://img.shields.io/badge/Laravel-11-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
 [![PHP](https://img.shields.io/badge/PHP-8.2-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
@@ -11,22 +11,13 @@
 [![Redis](https://img.shields.io/badge/Redis-7.x-DC382D?style=for-the-badge&logo=redis&logoColor=white)](https://redis.io)
 [![MariaDB](https://img.shields.io/badge/MariaDB-10.11-003545?style=for-the-badge&logo=mariadb&logoColor=white)](https://mariadb.org)
 
-**[🌐 Elite Companions](https://argentina.elitecompanions.cc)** · **[🌐 VIP Companions](https://argentina.vipcompanions.cc)**
-
 </div>
 
 ---
 
 ## 📌 Overview
 
-**Companions Group** is a production-grade, dual-brand B2C platform for verified adult companionship advertising in Argentina. Two independent brands run on the same codebase, each targeting a different market segment and SEO keyword space to eliminate cannibalization.
-
-| Brand | Domain | Live URL | Positioning | Color |
-|-------|--------|----------|-------------|-------|
-| 🌟 Elite Companions | `elitecompanions.cc` | [argentina.elitecompanions.cc](https://argentina.elitecompanions.cc) | Premium, exclusive, high-profile | Violet `#7C3AED` |
-| 💎 VIP Companions | `vipcompanions.cc` | [argentina.vipcompanions.cc](https://argentina.vipcompanions.cc) | Variety, social, diverse | Gold `#C8A235` |
-
-Both platforms are live in production, serving real users.
+**Companions Group** is a production-grade, B2C platform for verified adult companionship advertising.
 
 ---
 
@@ -81,19 +72,14 @@ Both platforms are live in production, serving real users.
 | Image processing | Intervention Image (watermarking) | 3.x |
 | Server | Nginx + PHP-FPM 8.2, Debian bare metal | — |
 
-### Six Isolated Environments
+### Three Isolated Environments
 
 ```
-/var/www/companions/
-├── elite_companions/
-│   ├── dev/www    →  dev.elitecompanions.cc         DB: elite_companions_dev
-│   ├── qa/www     →  qa.elitecompanions.cc          DB: elite_companions_qa
-│   └── prod/www   →  argentina.elitecompanions.cc   DB: elite_companions_prod_arg
-│
-└── vip_companions/
-    ├── dev/www    →  dev.vipcompanions.cc            DB: vip_companions_dev
-    ├── qa/www     →  qa.vipcompanions.cc             DB: vip_companions_qa
-    └── prod/www   →  argentina.vipcompanions.cc      DB: vip_companions_prod_arg
+├── companions/
+│   ├── dev/www    →  dev.domain_marketplace.cc         DB: companions_dev
+│   ├── qa/www     →  qa.domain_marketplace.cc          DB: companions_qa
+│   └── prod/www   →  country.domain_marketplace.cc   DB: companions_prod
+
 ```
 
 Every change flows strictly `DEV → QA → PROD`. Each environment has its own `.env`, isolated Redis DB slots, and independent PHP-FPM pools. Both brands share one server — isolated at the application layer.
