@@ -218,7 +218,7 @@ This repository is made public for portfolio and presentation purposes only.
 Unauthorized copying, modification, distribution, or commercial use of any part  
 of this codebase is strictly prohibited without explicit written permission.
 
-© 2026 Companions Group (Elite Companions · VIP Companions). All rights reserved.
+© 2026 Companions Group. All rights reserved.
 
 ---
 
