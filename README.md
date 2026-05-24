@@ -23,17 +23,17 @@ Companions Group is a production-grade, B2C platform for verified adult companio
 
 - **Multi-step KYC wizard** — Document upload + selfie verification with AES-256-CBC encrypted PII storage. Every model is a real, verified person.
 - **Full ad management** — 7-tab self-service editor: basic info, appearance, languages, services, rates, availability schedule, and media.
-- **Media gallery** — Up to 10 photos with drag & drop reordering, cover photo designation, automatic watermarking, and up to 3 embedded video URLs (YouTube/Vimeo/other).
-- **Subscription management** — Monthly and quarterly plans; models track their active plan, billing dates, and renewal status from their dashboard.
+- **Media gallery** — Photos with drag & drop reordering, cover photo designation, automatic watermarking, embedded video URLs (YouTube/Vimeo/other), upload videos too.
+- **Subscription management** — Permit create many type of plans related with time and cost; models track their active plan, billing dates, and renewal status from their dashboard.
 - **Multi-channel notifications** — In-app notification bell, transactional email (Postfix/Brevo SMTP relay), and Telegram bot with one-click account linking from model dashboard.
-- **Privacy controls** — Per-channel visibility toggles (WhatsApp, Telegram, email, phone). Real name and ID never exposed publicly.
+- **Privacy controls** — Per-channel visibility toggles (WhatsApp, Telegram, email, phone, TikTok, Instagram, Only Fans). Real name and ID never exposed publicly.
 - **Profile completeness** — Separate profile page with cascaded location selectors (country → province → city → neighborhood); all changes reflected instantly across public listings.
 - **Contact visibility** — Models choose which contact channels appear on their public ad with per-channel toggles.
 
 ### For Subscribers (demand side)
 
 - **Advanced search engine** — 15+ simultaneous filters: location (neighborhood, city, province), service types, physical attributes (height, weight, measurements, eye/hair color), price range, language, habits, and verification status.
-- **Featured placement algorithm** — Subscribed "featured" models surface before standard listings across all search queries.
+- **Featured placement algorithm** — Subscribed "featured" models surface before standard listings across all search queries, like submit reviews.
 - **Favorites** — Save and revisit preferred profiles across sessions.
 - **Double-moderated review system** — 1–5 star ratings + text comments. Admin approves first, then model decides to publish or hide.
 - **Contact history** — Automatic tracking of all interactions (WhatsApp taps, Telegram opens, email clicks, phone reveals) per model, with timestamped event log.
@@ -238,7 +238,7 @@ admin panel, KYC wizard, Livewire components, model & subscriber dashboards, app
 | Technical SEO (meta, OG, structured data) | ✅ Live |
 | PWA (manifest + service worker) | ✅ Live |
 | GDPR cookie consent banner | ✅ Live |
-| MercadoPago webhook (auto-activation) | 🔄 In progress |
+| MercadoPago webhook (auto-activation) | ✅ Live |
 | CI/CD pipeline (GitHub Actions) | 📋 Planned |
 
 ---
