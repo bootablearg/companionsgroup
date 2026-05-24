@@ -19,7 +19,7 @@
 @endphp
 
 @if($modelo && $hasContact)
-    <div class="bg-gray-900 border border-gray-800 rounded-lg p-5 space-y-3">
+    <div class="bg-page-background border border-border-default rounded-lg p-5 space-y-3">
         <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-400">Contacta directamente</h3>
         <p class="text-sm text-gray-500 leading-relaxed">
             Estas vía directa está disponible para visitantes verificados. Conservamos la privacidad de tus datos.
@@ -28,7 +28,7 @@
             @if($modelo->show_phone && $phone)
                 <a
                     href="tel:{{ $phone }}"
-                    class="flex items-center justify-between gap-3 w-full border border-gray-800 bg-gray-900 hover:border-rose-600 rounded-xl px-4 py-3 text-sm text-gray-100 transition-all"
+                    class="flex items-center justify-between gap-3 w-full border border-border-default bg-page-background hover:border-status-error-light-border rounded-xl px-4 py-3 text-sm text-text-primary transition-all"
                 >
                     <span>Teléfono</span>
                     <span class="text-rose-400 font-semibold">{{ $phone }}</span>
@@ -40,7 +40,7 @@
                     href="{{ $whatsappLink }}"
                     target="_blank"
                     rel="noopener"
-                    class="flex items-center justify-between gap-3 w-full border border-gray-800 bg-green-900/40 text-green-200 hover:border-green-500 rounded-xl px-4 py-3 text-sm font-semibold transition-all"
+                    class="flex items-center justify-between gap-3 w-full border border-border-default bg-green-900/40 text-green-200 hover:border-green-500 rounded-xl px-4 py-3 text-sm font-semibold transition-all"
                 >
                     <span>WhatsApp</span>
                     <span class="text-green-200">{{ $whatsapp }}</span>
@@ -52,13 +52,13 @@
                     href="{{ $telegramLink }}"
                     target="_blank"
                     rel="noopener"
-                    class="flex items-center justify-between gap-3 w-full border border-gray-800 bg-blue-800/40 text-blue-200 hover:border-blue-500 rounded-xl px-4 py-3 text-sm font-semibold transition-all"
+                    class="flex items-center justify-between gap-3 w-full border border-border-default bg-blue-800/40 text-blue-200 hover:border-blue-500 rounded-xl px-4 py-3 text-sm font-semibold transition-all"
                 >
                     <span>Telegram</span>
                     <span class="text-blue-200">{{ Str::startsWith($telegram, '@') ? $telegram : "@{$telegram}" }}</span>
                 </a>
             @endif
         </div>
-        <p class="text-xs text-gray-500">VIP Companions protege la información personal y no revela datos sensibles sin consentimiento.</p>
+        <p class="text-xs text-gray-500">Elite Companions protege la información personal y no revela datos sensibles sin consentimiento.</p>
     </div>
 @endif

@@ -3,12 +3,12 @@
 @section('title', 'Buscar Modelos')
 
 @section('page_style')
-.filter-label { font-size:.75rem; font-weight:600; text-transform:uppercase; letter-spacing:.05em; color:#6B7280; margin-bottom:.25rem; display:block; }
-.filter-select { width:100%; padding:.5rem .75rem; border:1px solid #E5E7EB; border-radius:.75rem; font-size:.875rem; background:#fff; color:#111827; }
-.filter-select:focus { outline:none; border-color:#C8A235; box-shadow:0 0 0 3px rgba(200,162,53,.1); }
-.filter-input { width:100%; padding:.5rem .75rem; border:1px solid #E5E7EB; border-radius:.75rem; font-size:.875rem; background:#fff; color:#111827; }
-.filter-input:focus { outline:none; border-color:#C8A235; box-shadow:0 0 0 3px rgba(200,162,53,.1); }
-.active-filter { display:inline-flex; align-items:center; gap:.35rem; padding:.2rem .65rem; background:#2C1C0E; color:#5B21B6; border-radius:9999px; font-size:.75rem; font-weight:600; }
+.filter-label { font-size:.75rem; font-weight:600; text-transform:uppercase; letter-spacing:.05em; color:var(--text-secondary); margin-bottom:.25rem; display:block; }
+.filter-select { width:100%; padding:.5rem .75rem; border:1px solid var(--border-neutral); border-radius:.75rem; font-size:.875rem; background:var(--card-bg); color:var(--text-primary); }
+.filter-select:focus { outline:none; border-color:var(--brand-primary); box-shadow:0 0 0 3px var(--focus-ring-brand-soft); }
+.filter-input { width:100%; padding:.5rem .75rem; border:1px solid var(--border-neutral); border-radius:.75rem; font-size:.875rem; background:var(--card-bg); color:var(--text-primary); }
+.filter-input:focus { outline:none; border-color:var(--brand-primary); box-shadow:0 0 0 3px var(--focus-ring-brand-soft); }
+.active-filter { display:inline-flex; align-items:center; gap:.35rem; padding:.2rem .65rem; background:var(--border-default); color:var(--text-brand-deep); border-radius:9999px; font-size:.75rem; font-weight:600; }
 @endsection
 
 @section('content')
@@ -29,11 +29,11 @@
             @if($key !== 'sort_by')
             <span class="active-filter">
                 {{ str_replace('_', ' ', $key) }}: {{ is_array($value) ? implode(', ', $value) : $value }}
-                <a href="{{ request()->fullUrlWithQuery([$key => null]) }}" class="ml-1 text-[#C0946A] hover:text-violet-700">×</a>
+                <a href="{{ request()->fullUrlWithQuery([$key => null]) }}" class="ml-1 text-violet-400 hover:text-violet-700">×</a>
             </span>
             @endif
         @endforeach
-        <a href="{{ route('search') }}" class="active-filter" style="background:#FEE2E2;color:#991B1B;">
+        <a href="{{ route('search') }}" class="active-filter" style="background:var(--status-error-light-bg);color:var(--status-error-border);">
             Limpiar filtros ×
         </a>
     </div>
@@ -54,7 +54,7 @@
                         <input type="text" name="q" value="{{ $filters['q'] ?? '' }}"
                                placeholder="Nombre, descripción..."
                                class="filter-input pr-9">
-                        <button type="submit" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#C0946A]">
+                        <button type="submit" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-violet-500">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                             </svg>
@@ -222,13 +222,13 @@
                     <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
                         <input type="checkbox" name="is_waxed" value="1"
                                {{ isset($filters['is_waxed']) ? 'checked' : '' }}
-                               class="rounded text-[#C0946A]">
+                               class="rounded text-violet-600">
                         Depilada
                     </label>
                     <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
                         <input type="checkbox" name="is_smoker" value="1"
                                {{ isset($filters['is_smoker']) ? 'checked' : '' }}
-                               class="rounded text-[#C0946A]">
+                               class="rounded text-violet-600">
                         Fumadora
                     </label>
                 </div>
@@ -242,7 +242,7 @@
                         <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
                             <input type="checkbox" name="service_types[]" value="{{ $st->id }}"
                                    {{ in_array($st->id, (array)($filters['service_types'] ?? [])) ? 'checked' : '' }}
-                                   class="rounded text-[#C0946A]">
+                                   class="rounded text-violet-600">
                             {{ $st->name }}
                         </label>
                         @endforeach

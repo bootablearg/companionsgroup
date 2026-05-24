@@ -1,6 +1,6 @@
 # Companions Group
 
-**Brand adult companionship platform — escort marketplace — Argentina**
+**Plataforma B2C de acompañantes adultos verificados — marketplace de escorts — Argentina**
 
 [![Laravel 11](https://img.shields.io/badge/Laravel-11.x-red?logo=laravel)](https://laravel.com)
 [![PHP 8.2](https://img.shields.io/badge/PHP-8.2-blue?logo=php)](https://php.net)
@@ -11,94 +11,94 @@
 
 ---
 
-## Overview
+## Descripción general
 
-Companions Group is a production-grade, B2C platform for verified adult companionship advertising. The same codebase powers multiple branded deployments, each with its own visual identity, domain, and isolated data layer — all sharing a single, maintained application core.
-
----
-
-## Feature Set
-
-### For Models (supply side)
-
-- **Multi-step KYC wizard** — Document upload + selfie verification with AES-256-CBC encrypted PII storage. Every model is a real, verified person.
-- **Full ad management** — 7-tab self-service editor: basic info, appearance, languages, services, rates, availability schedule, and media.
-- **Media gallery** — Photos with drag & drop reordering, cover photo designation, automatic watermarking, embedded video URLs (YouTube/Vimeo/other), upload videos too.
-- **Subscription management** — Permit create many type of plans related with time and cost; models track their active plan, billing dates, and renewal status from their dashboard.
-- **Multi-channel notifications** — In-app notification bell, transactional email (Postfix/Brevo SMTP relay), and Telegram bot with one-click account linking from model dashboard.
-- **Privacy controls** — Per-channel visibility toggles (WhatsApp, Telegram, email, phone, TikTok, Instagram, Only Fans). Real name and ID never exposed publicly.
-- **Profile completeness** — Separate profile page with cascaded location selectors (country → province → city → neighborhood); all changes reflected instantly across public listings.
-- **Contact visibility** — Models choose which contact channels appear on their public ad with per-channel toggles.
-
-### For Subscribers (demand side)
-
-- **Advanced search engine** — 15+ simultaneous filters: location (neighborhood, city, province), service types, physical attributes (height, weight, measurements, eye/hair color), price range, language, habits, and verification status.
-- **Featured placement algorithm** — Subscribed "featured" models surface before standard listings across all search queries, like submit reviews.
-- **Favorites** — Save and revisit preferred profiles across sessions.
-- **Double-moderated review system** — 1–5 star ratings + text comments. Admin approves first, then model decides to publish or hide.
-- **Contact history** — Automatic tracking of all interactions (WhatsApp taps, Telegram opens, email clicks, phone reveals) per model, with timestamped event log.
-- **Sorted search results** — Most recent, featured-first, and relevance-based ordering options.
-
-### For Platform Operators (admin panel)
-
-- **KYC review queue** — Inline document lightbox (front ID, back ID, selfie, selfie-with-doc). Approve or reject with reason. PII decryption gated to `full` / `superadmin` roles.
-- **Full ad moderation** — Approve, reject (with reason), suspend temporarily (date picker + quick buttons: 1/3/7/14/30 days), auto-reactive on expiry. Sortable by model, title, status, or publication date.
-- **Subscription management** — Full lifecycle CRUD: create subscriptions for specific ads, assign plan + duration, activate, cancel, or delete. Linked ad activation on subscription create/update. Sortable by ID, plan, status, start and end date.
-- **Plan catalog** — Full CRUD for subscription plans: name, price, duration, feature flags, sort order.
-- **Payment processing** — Receipt review, manual activation, full payment history per user.
-- **Delinquency dashboard** — Models with expired subscriptions listed by days overdue and accumulated amount.
-- **Dynamic Design Theme System** — No-code visual customization: 270+ CSS design tokens, fullpage editor with 3 tabs (Colors, Typography, Custom), multiple themes per brand, live preview. Zero hardcoded colors — the entire UI adapts from DB-driven CSS variables.
-- **No-code content management** — FAQ (segmented by role), Terms & Conditions, Privacy Policy — all editable from admin UI without touching code.
-- **Email template management** — All transactional notification templates editable from admin panel.
-- **Service catalog** — Full CRUD + active toggle + drag & drop reorder for 40+ service types.
-- **Admin user management** — Create, edit, activate/deactivate admin accounts with role assignment (basic / full / superadmin). Sortable by ID, status, and last login.
-- **Integration settings** — Telegram bot token configuration with live test panel (send test message to admin or channel directly from UI).
-- **Sortable tables across admin** — All major admin tables (users, KYC, admin accounts, ads, subscriptions) support multi-column sorting with directional indicators, persisted across pagination.
-- **2FA TOTP** — Google Authenticator enforced for all admin sessions, per-login.
-- **Immutable audit log** — Every admin action recorded with actor, timestamp, IP, and before/after values.
+Companions Group es una plataforma B2C de nivel productivo para publicidad de acompañantes adultos verificados. El mismo código fuente impulsa múltiples despliegues de marca, cada uno con su propia identidad visual, dominio y capa de datos aislada — todos compartiendo un núcleo de aplicación único y mantenido.
 
 ---
 
-## Architecture
+## Funcionalidades
 
-### Tech Stack
+### Para Modelos (lado de la oferta)
 
-| Layer | Technology |
+- **Wizard KYC multipaso** — Carga de documentos + verificación por selfie con almacenamiento encriptado AES-256-CBC de datos personales. Cada modelo es una persona real y verificada.
+- **Gestión completa de avisos** — Editor de autoservicio con 7 pestañas: información básica, apariencia, idiomas, servicios, tarifas, horarios de disponibilidad y multimedia.
+- **Galería multimedia** — Fotos con reordenamiento drag & drop, designación de foto de portada, marca de agua automática, URLs de video embebidas (YouTube/Vimeo/otros) y carga directa de videos.
+- **Gestión de suscripciones** — Permite crear distintos tipos de planes por tiempo y costo; las modelos hacen seguimiento de su plan activo, fechas de facturación y estado de renovación desde su dashboard.
+- **Notificaciones multicanal** — Campanilla de notificaciones en la app, email transaccional (relay Postfix/Brevo SMTP) y bot de Telegram con vinculación de cuenta en un clic desde el dashboard.
+- **Controles de privacidad** — Toggles de visibilidad por canal (WhatsApp, Telegram, email, teléfono, TikTok, Instagram, OnlyFans). El nombre real y el DNI nunca se exponen públicamente.
+- **Perfil completo** — Página de perfil separada con selectores de ubicación en cascada (país → provincia → ciudad → barrio); todos los cambios se reflejan de inmediato en los listados públicos.
+- **Visibilidad de contacto** — Las modelos eligen qué canales de contacto aparecen en su aviso público mediante toggles individuales por canal.
+
+### Para Suscriptores (lado de la demanda)
+
+- **Motor de búsqueda avanzada** — Más de 15 filtros simultáneos: ubicación (barrio, ciudad, provincia), tipos de servicio, atributos físicos (altura, peso, medidas, color de ojos/cabello), rango de precios, idioma, hábitos y estado de verificación.
+- **Algoritmo de posicionamiento destacado** — Las modelos con suscripción "destacada" aparecen antes que los listados estándar en todas las búsquedas, así como al enviar reseñas.
+- **Favoritos** — Guardá y revisitá perfiles preferidos entre sesiones.
+- **Sistema de reseñas con doble moderación** — Calificaciones de 1 a 5 estrellas + comentarios de texto. El admin aprueba primero; luego la modelo decide si publicar u ocultar la reseña.
+- **Historial de contactos** — Registro automático de todas las interacciones (toques en WhatsApp, aperturas de Telegram, clics en email, revelaciones de teléfono) por modelo, con log de eventos con timestamp.
+- **Resultados de búsqueda ordenados** — Opciones de ordenamiento por más recientes, destacadas primero o por relevancia.
+
+### Para Operadores de Plataforma (panel de administración)
+
+- **Cola de revisión KYC** — Lightbox de documentos inline (DNI frente, DNI dorso, selfie, selfie con documento). Aprobar o rechazar con motivo. Desencriptado de datos personales restringido a roles `full` / `superadmin`.
+- **Moderación completa de avisos** — Aprobar, rechazar (con motivo), suspender temporalmente (selector de fecha + botones rápidos: 1/3/7/14/30 días), reactivación automática al vencer. Ordenable por modelo, título, estado o fecha de publicación.
+- **Gestión de suscripciones** — CRUD de ciclo de vida completo: crear suscripciones para avisos específicos, asignar plan + duración, activar, cancelar o eliminar. Activación del aviso vinculado al crear/actualizar la suscripción. Ordenable por ID, plan, estado, fecha de inicio y fin.
+- **Catálogo de planes** — CRUD completo para planes de suscripción: nombre, precio, duración, feature flags, orden.
+- **Procesamiento de pagos** — Revisión de comprobantes, activación manual, historial completo de pagos por usuario.
+- **Dashboard de mora** — Modelos con suscripciones vencidas listadas por días de atraso e importe acumulado.
+- **Sistema de temas visuales dinámico** — Personalización visual sin código: más de 270 tokens de diseño CSS, editor fullpage con 3 pestañas (Colores, Tipografía, Personalizados), múltiples temas por marca con vista previa en vivo. Cero colores hardcodeados — toda la UI se adapta desde variables CSS gestionadas en base de datos.
+- **Gestión de contenido sin código** — FAQ (segmentada por rol), Términos y Condiciones, Política de Privacidad — todo editable desde la UI de administración sin tocar código.
+- **Gestión de plantillas de email** — Todas las plantillas de notificaciones transaccionales editables desde el panel de administración.
+- **Catálogo de servicios** — CRUD completo + toggle de activación + reordenamiento drag & drop para más de 40 tipos de servicio.
+- **Gestión de usuarios admin** — Crear, editar, activar/desactivar cuentas de administrador con asignación de rol (basic / full / superadmin). Ordenable por ID, estado y último login.
+- **Configuración de integraciones** — Configuración del token del bot de Telegram con panel de prueba en vivo (enviar mensaje de prueba al admin o canal directamente desde la UI).
+- **Tablas ordenables en todo el admin** — Todas las tablas principales del panel (usuarios, KYC, cuentas admin, avisos, suscripciones) soportan ordenamiento multicolumna con indicadores direccionales, persistido entre páginas.
+- **2FA TOTP** — Google Authenticator obligatorio para todas las sesiones de administración, por login.
+- **Log de auditoría inmutable** — Cada acción de administración registrada con actor, timestamp, IP y valores antes/después.
+
+---
+
+## Arquitectura
+
+### Stack tecnológico
+
+| Capa | Tecnología |
 |---|---|
-| Backend framework | Laravel 11.x |
-| Language | PHP 8.2 |
-| Reactive frontend | Blade + Livewire + Alpine.js 3.x |
+| Framework backend | Laravel 11.x |
+| Lenguaje | PHP 8.2 |
+| Frontend reactivo | Blade + Livewire + Alpine.js 3.x |
 | CSS / Build | Tailwind CSS 3.4 + Vite 5.x |
-| Database | MariaDB 10.11 (InnoDB, utf8mb4) |
-| Cache / Sessions / Queue | Redis 7.x |
-| Web auth | Laravel session + bcrypt |
-| Admin auth | Separate DB table + guard + TOTP 2FA |
-| REST API auth | JWT (PHPOpenSourceSaver) 2.0 |
-| Identity encryption | AES-256-CBC via Laravel `Crypt` (APP_KEY) |
-| Payments | MercadoPago SDK 3.x |
-| Email | Postfix relay → Brevo SMTP |
-| Push notifications | Telegram Bot API |
-| Image processing | Intervention Image 3.x (watermarking) |
-| Server | Nginx + PHP-FPM 8.2, Debian bare metal |
+| Base de datos | MariaDB 10.11 (InnoDB, utf8mb4) |
+| Cache / Sesiones / Queue | Redis 7.x |
+| Autenticación web | Laravel session + bcrypt |
+| Autenticación admin | Tabla DB + guard separados + TOTP 2FA |
+| Autenticación API REST | JWT (PHPOpenSourceSaver) 2.0 |
+| Encriptación de identidad | AES-256-CBC vía Laravel `Crypt` (APP_KEY) |
+| Pagos | MercadoPago SDK 3.x |
+| Email | Relay Postfix → Brevo SMTP |
+| Notificaciones push | Telegram Bot API |
+| Procesamiento de imágenes | Intervention Image 3.x (marca de agua) |
+| Servidor | Nginx + PHP-FPM 8.2, Debian bare metal |
 
-### Three Isolated Environments
+### Tres ambientes aislados
 
 ```
 companions/
-├── dev/www    →  dev.domain.cc           DB: companions_dev    Redis: project=N, env=1
-├── qa/www     →  qa.domain.cc            DB: companions_qa     Redis: project=N, env=2
-└── prod/www   →  country.domain.cc       DB: companions_prod   Redis: project=N, env=3
+├── dev/www    →  dev.dominio.cc           DB: companions_dev    Redis: project=N, env=1
+├── qa/www     →  qa.dominio.cc            DB: companions_qa     Redis: project=N, env=2
+└── prod/www   →  pais.dominio.cc          DB: companions_prod   Redis: project=N, env=3
 ```
 
-Every change flows strictly **DEV → QA → PROD**. Each environment has its own `.env`, isolated Redis DB slots (project × environment matrix), and independent PHP-FPM pools. Multiple branded deployments share one server — isolated at the application layer.
+Todo cambio fluye estrictamente **DEV → QA → PROD**. Cada ambiente tiene su propio `.env`, slots Redis aislados (matriz proyecto × ambiente) y pools PHP-FPM independientes. Múltiples despliegues de marca comparten un servidor — aislados a nivel de capa de aplicación.
 
-### Design Theme System
+### Sistema de temas de diseño
 
-The platform runs a DB-driven visual theming engine. On every HTTP request, `LoadActiveTheme` middleware fetches the active theme (cached 24h via `ThemeService`) and injects ~270 CSS custom properties into `:root {}`. All views reference only `var(--token-name)` — zero hardcoded colors anywhere in the codebase.
+La plataforma ejecuta un motor de temas visuales gestionado desde base de datos. En cada request HTTP, el middleware `LoadActiveTheme` obtiene el tema activo (con cache de 24h vía `ThemeService`) e inyecta ~270 propiedades CSS personalizadas en `:root {}`. Todas las vistas referencian únicamente `var(--nombre-token)` — cero colores hardcodeados en todo el código fuente.
 
 ---
 
-## Data Model (35+ tables)
+## Modelo de datos (35+ tablas)
 
 ```
 users ──< escort_profiles ──< avisos ──< aviso_photos
@@ -119,150 +119,148 @@ users ──< contact_links  ──< contact_events
 admin_users ──< audit_logs
             ──< moderation_actions
 
-design_themes ──< token_definitions    ← visual theming system
-site_settings                          ← platform-level config
-email_templates                        ← notification templates
-faqs                                   ← segmented FAQ content (by role)
-provinces >── countries                ← geography
-pages                                  ← T&C, Privacy Policy
+design_themes ──< token_definitions    ← sistema de temas visuales
+site_settings                          ← configuración de la plataforma
+email_templates                        ← plantillas de notificaciones
+faqs                                   ← contenido FAQ segmentado por rol
+provinces >── countries                ← geografía
+pages                                  ← T&C, Política de Privacidad
 ```
 
-All tables: InnoDB engine, `utf8mb4_unicode_ci`, full FK indexing.
+Todas las tablas: motor InnoDB, `utf8mb4_unicode_ci`, indexación FK completa.
 
 ---
 
-## Key Lifecycles
+## Ciclos de vida principales
 
-### Model account
-
-```
-Register → Verify email → Submit KYC → Admin review → Active
-         → [Admin suspend with date] → Auto-reactive on expiry
-         → [Admin ban] → Banned (terminal)
-```
-
-### Ad listing
+### Cuenta de modelo
 
 ```
-Draft → Pending (admin queue) → Pending payment → Active
-     → [Admin suspend + days] → Auto-reactive via cron (15 min)
-     → [Subscription expires via cron (hourly)] → Inactive
-     → [Subscription renewed / admin activates] → Active
+Registro → Verificar email → Enviar KYC → Revisión admin → Activa
+         → [Admin suspende con fecha] → Reactivación automática al vencer
+         → [Admin banea] → Baneada (estado terminal)
 ```
 
-### Subscription
+### Aviso publicitario
 
 ```
-Admin creates → Active (immediate) → Linked ad activated
-→ [Expiry cron daily] → Expired → Linked ad deactivated
-→ [Admin renews / creates new] → Active again
+Borrador → Pendiente (cola admin) → Pendiente de pago → Activo
+        → [Admin suspende + días] → Reactivación automática vía cron (15 min)
+        → [Suscripción vence vía cron (cada hora)] → Inactivo
+        → [Suscripción renovada / admin activa] → Activo
 ```
 
-### Review
+### Suscripción
 
 ```
-Subscriber submits → Admin queue → Admin approves
-→ Model decides → Published (public) or Hidden
+Admin crea → Activa (inmediata) → Aviso vinculado se activa
+→ [Cron de vencimiento diario] → Vencida → Aviso vinculado se desactiva
+→ [Admin renueva / crea nueva] → Activa nuevamente
+```
+
+### Reseña
+
+```
+Suscriptor envía → Cola de admin → Admin aprueba
+→ Modelo decide → Publicada (pública) u Oculta
 ```
 
 ---
 
-## Security Architecture
+## Arquitectura de seguridad
 
-| Layer | Implementation |
+| Capa | Implementación |
 |---|---|
-| Transport | TLS 1.2/1.3 on all environments |
-| KYC PII | AES-256-CBC via APP_KEY — name, DOB, ID number encrypted at rest |
-| Identity documents | Private filesystem, served exclusively through gated PHP controller |
-| Admin access | Separate DB table + guard + TOTP 2FA (Google Authenticator) |
-| Role gating | `basic` / `full` / `superadmin` — PII decryption requires `full`+ |
-| Forms | CSRF on all endpoints (Telegram webhook explicitly excluded) |
-| Brute force | Rate limiting: 5 login attempts; 60 req/min API |
-| HTTP headers | HSTS, X-Frame-Options, X-Content-Type-Options, X-XSS-Protection (Nginx) |
-| Audit trail | Immutable `audit_logs` — actor, action, subject, old/new values, IP |
-| GDPR | Explicit consent + age verification timestamps on registration |
-| Sensitive files | `.env`, `.git` blocked at Nginx level |
-| Secrets | All tokens and keys stored exclusively in `.env`; no secrets in codebase |
+| Transporte | TLS 1.2/1.3 en todos los ambientes |
+| Datos personales KYC | AES-256-CBC vía APP_KEY — nombre, fecha de nacimiento, número de documento encriptados en reposo |
+| Documentos de identidad | Filesystem privado, servidos exclusivamente a través de controlador PHP con acceso controlado |
+| Acceso admin | Tabla DB + guard separados + TOTP 2FA (Google Authenticator) |
+| Control por rol | `basic` / `full` / `superadmin` — desencriptado de datos personales requiere `full`+ |
+| Formularios | CSRF en todos los endpoints (webhook de Telegram explícitamente excluido) |
+| Fuerza bruta | Rate limiting: 5 intentos de login; 60 req/min en API |
+| Headers HTTP | HSTS, X-Frame-Options, X-Content-Type-Options, X-XSS-Protection (Nginx) |
+| Trazabilidad | `audit_logs` inmutable — actor, acción, sujeto, valores antes/después, IP |
+| RGPD | Timestamps de consentimiento explícito y verificación de edad en el registro |
+| Archivos sensibles | `.env`, `.git` bloqueados a nivel Nginx |
+| Secretos | Todos los tokens y claves almacenados exclusivamente en `.env`; sin secretos en el código fuente |
 
 ---
 
-## Repository Structure
+## Estructura del repositorio
 
-This public repository exposes the presentational and schema layers of the platform:
+Este repositorio público expone las capas de presentación y esquema de la plataforma:
 
 ```
 companionsgroup/
 ├── database/
-│   └── migrations/           ← Full DB schema — 35+ tables
+│   └── migrations/           ← Esquema completo de BD — 35+ tablas
 ├── public/
-│   └── landing/              ← Static landing (country selector + age gate)
+│   └── landing/              ← Landing estática (selector de país + verificación de edad)
 ├── resources/
 │   └── views/
-│       ├── pages/            ← Home, profiles, search, FAQ, legal pages
-│       ├── components/       ← Reusable public UI components
-│       ├── layouts/          ← Public + admin layouts with SEO meta stack
+│       ├── pages/            ← Home, perfiles, búsqueda, FAQ, páginas legales
+│       ├── components/       ← Componentes UI públicos reutilizables
+│       ├── layouts/          ← Layouts públicos y admin con stack SEO
 │       └── errors/           ← 403, 404, 500
 └── routes/
-    └── web.php               ← Public route definitions
+    └── web.php               ← Definición de rutas públicas
 ```
 
-The full business logic layer is maintained in private per-brand repositories:
-admin panel, KYC wizard, Livewire components, model & subscriber dashboards, application services, payment integrations.
+La capa completa de lógica de negocio se mantiene en repositorios privados por marca: panel de administración, wizard KYC, componentes Livewire, dashboards de modelo y suscriptor, servicios de aplicación, integraciones de pago.
 
 ---
 
-## Production Status
+## Estado en producción
 
-| Feature | Status |
+| Funcionalidad | Estado |
 |---|---|
-| Authentication + email verification | ✅ Live |
-| KYC identity verification (wizard + admin) | ✅ Live |
-| Model ad management (7-tab editor) | ✅ Live |
-| Public profiles + lightbox gallery | ✅ Live |
-| Advanced search engine (15+ filters) | ✅ Live |
-| Featured model placement algorithm | ✅ Live |
-| Double-moderated review system | ✅ Live |
-| Subscription plans + payment flow | ✅ Live |
-| Email notifications (Postfix/Brevo) | ✅ Live |
-| Telegram bot notifications + account linking | ✅ Live |
-| Full admin panel | ✅ Live |
-| No-code content management (FAQ, T&C, Privacy) | ✅ Live |
-| Dynamic Design Theme System (270+ tokens, fullpage editor) | ✅ Live |
-| Admin sortable tables (users, KYC, ads, subscriptions) | ✅ Live |
-| Plan + subscription management (admin CRUD) | ✅ Live |
-| Integration settings + Telegram test panel | ✅ Live |
-| Contact history tracking | ✅ Live |
-| Delinquency dashboard | ✅ Live |
-| Auto-expiry cron (subscriptions hourly + suspensions 15 min) | ✅ Live |
-| Automated daily DB + file backups | ✅ Live |
-| Technical SEO (meta, OG, structured data) | ✅ Live |
-| PWA (manifest + service worker) | ✅ Live |
-| GDPR cookie consent banner | ✅ Live |
-| MercadoPago webhook (auto-activation) | ✅ Live |
-| CI/CD pipeline (GitHub Actions) | 📋 Planned |
+| Autenticación + verificación de email | ✅ Productivo |
+| Verificación de identidad KYC (wizard + admin) | ✅ Productivo |
+| Gestión de avisos del modelo (editor 7 pestañas) | ✅ Productivo |
+| Perfiles públicos + galería lightbox | ✅ Productivo |
+| Motor de búsqueda avanzada (15+ filtros) | ✅ Productivo |
+| Algoritmo de posicionamiento destacado | ✅ Productivo |
+| Sistema de reseñas con doble moderación | ✅ Productivo |
+| Planes de suscripción + flujo de pago | ✅ Productivo |
+| Notificaciones por email (Postfix/Brevo) | ✅ Productivo |
+| Bot de Telegram + vinculación de cuenta | ✅ Productivo |
+| Panel de administración completo | ✅ Productivo |
+| Gestión de contenido sin código (FAQ, T&C, Privacidad) | ✅ Productivo |
+| Sistema de temas de diseño dinámico (270+ tokens, editor fullpage) | ✅ Productivo |
+| Tablas admin ordenables (usuarios, KYC, avisos, suscripciones) | ✅ Productivo |
+| Gestión de planes y suscripciones (CRUD admin) | ✅ Productivo |
+| Configuración de integraciones + panel de prueba Telegram | ✅ Productivo |
+| Historial de contactos | ✅ Productivo |
+| Dashboard de mora | ✅ Productivo |
+| Cron de vencimiento automático (suscripciones cada hora + suspensiones cada 15 min) | ✅ Productivo |
+| Backups automáticos diarios de DB + archivos | ✅ Productivo |
+| SEO técnico (meta, OG, datos estructurados) | ✅ Productivo |
+| PWA (manifest + service worker) | ✅ Productivo |
+| Banner de consentimiento de cookies RGPD | ✅ Productivo |
+| Webhook MercadoPago (verificación de firma + activación automática + recurrente) | ✅ Productivo |
+| Pipeline CI/CD (GitHub Actions) | 📋 Planificado |
 
 ---
 
-## Contact
+## Contacto
 
-This is a proprietary commercial platform. The full codebase is not open source.
+Esta es una plataforma comercial propietaria. El código fuente completo no es open source.
 
-For licensing inquiries, technical partnerships, or investment:
+Para consultas de licenciamiento, asociaciones técnicas o inversión:
 
 **groupcompanions.arg@gmail.com**
 
 ---
 
-## License
+## Licencia
 
-**Proprietary — All Rights Reserved**
+**Propietaria — Todos los derechos reservados**
 
-This repository is made public for portfolio and presentation purposes only.
-Unauthorized copying, modification, distribution, or commercial use of any part
-of this codebase is strictly prohibited without explicit written permission.
+Este repositorio es público únicamente con fines de portfolio y presentación.
+Está estrictamente prohibida la copia, modificación, distribución o uso comercial no autorizado de cualquier parte de este código sin autorización escrita explícita.
 
-© 2026 Companions Group. All rights reserved.
+© 2026 Companions Group. Todos los derechos reservados.
 
 ---
 
-*Built with ❤️ in Argentina · Laravel 11 · PHP 8.2 · Livewire · Tailwind CSS · Redis · MariaDB*
+*Construido con ❤️ en Argentina · Laravel 11 · PHP 8.2 · Livewire · Tailwind CSS · Redis · MariaDB*

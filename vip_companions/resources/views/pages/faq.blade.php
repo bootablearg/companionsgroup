@@ -1,18 +1,18 @@
 @extends('layouts.app')
 
-@section('title', 'Preguntas Frecuentes — VIP Companions Argentina')
-@section('meta_description', 'Respondemos las preguntas más frecuentes sobre VIP Companions: cómo funciona, cómo registrarse, seguridad en reuniones y eventos corporativos.')
-@section('canonical', 'https://vipcompanions.cc/faq')
+@section('title', 'Preguntas Frecuentes — Elite Companions Argentina')
+@section('meta_description', 'Respondemos las preguntas más frecuentes sobre Elite Companions: cómo funciona la plataforma, cómo registrarse, seguridad y privacidad.')
+@section('canonical', 'https://elitecompanions.cc/faq')
 
 @section('page_style')
-body { background-color: #160E06 !important; }
+body { background-color: var(--page-background) !important; }
 .ec-card {
     border: 2px solid transparent;
-    background: linear-gradient(#2C1C0E, #2C1C0E) padding-box,
-                linear-gradient(135deg, #C8A235 0%, #C8A235 100%) border-box;
+    background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+                var(--gradient-plan-card-border) border-box;
 }
 .ec-gradient-text {
-    background: linear-gradient(135deg, #C8A235, #E8BE50);
+    background: var(--gradient-accent-brand);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -24,7 +24,7 @@ body { background-color: #160E06 !important; }
 
     <div class="mb-8 text-center">
         <h1 class="text-3xl ec-gradient-text" style="display:inline-block;">Preguntas Frecuentes</h1>
-        <p class="mt-3 text-sm" style="color:#8A6848;">Encontrá respuestas a las dudas más comunes sobre la Plataforma.</p>
+        <p class="text-gray-500 mt-3 text-sm">Encontrá respuestas a las dudas más comunes sobre la Plataforma.</p>
     </div>
 
     @if(isset($faqItems) && $faqItems->count() > 0)
@@ -33,15 +33,14 @@ body { background-color: #160E06 !important; }
                 <div class="ec-card rounded-xl overflow-hidden shadow-sm">
                     <button
                         @click="activeItem = activeItem === {{ $index }} ? null : {{ $index }}"
-                        class="w-full flex items-center justify-between px-5 py-4 text-left"
-                        style="background:#2C1C0E;"
+                        class="w-full flex items-center justify-between px-5 py-4 text-left bg-white"
                         :aria-expanded="activeItem === {{ $index }}"
                     >
-                        <span class="text-sm pr-4" style="color:#C8A235;">{{ $faq->question }}</span>
+                        <span class="text-sm pr-4" style="color: var(--brand-primary);">{{ $faq->question }}</span>
                         <svg
                             class="w-5 h-5 flex-shrink-0 transition-transform duration-200"
                             :class="activeItem === {{ $index }} ? 'rotate-180' : ''"
-                            style="color:#C8A235;"
+                            style="color: var(--brand-primary);"
                             fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         >
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
@@ -53,9 +52,9 @@ body { background-color: #160E06 !important; }
                         x-transition:enter-start="opacity-0 transform -translate-y-1"
                         x-transition:enter-end="opacity-100 transform translate-y-0"
                         x-cloak
-                        class="px-5 pb-5 border-t" style="background:#2C1C0E;border-color:#4A3018;"
+                        class="px-5 pb-5 bg-white border-t border-gray-100"
                     >
-                        <p class="text-sm leading-relaxed" style="color:#8A6848;white-space:pre-line;">{!! $faq->answer !!}</p>
+                        <p class="text-sm text-gray-400 leading-relaxed" style="white-space:pre-line;">{!! $faq->answer !!}</p>
                     </div>
                 </div>
             @endforeach
@@ -64,7 +63,7 @@ body { background-color: #160E06 !important; }
         @php
             $staticFaqs = [
                 [
-                    'q' => '¿Quien puede registrarse en VIP Companions?',
+                    'q' => '¿Quien puede registrarse en Elite Companions?',
                     'a' => 'Cualquier persona mayor de 18 años puede registrarse como suscriptor para explorar perfiles. Para publicar un aviso como modelo, es necesario completar el proceso de verificacion de identidad (KYC) que confirma la mayoria de edad.'
                 ],
                 [
@@ -81,7 +80,7 @@ body { background-color: #160E06 !important; }
                 ],
                 [
                     'q' => '¿Cuales son los planes de suscripcion disponibles?',
-                    'a' => 'Contamos con varias opciones de suscripción para que elijas la que mejor se adapte a tu estilo y a la visibilidad que querés lograr dentro de la plataforma.<br><br>Actualmente ofrecemos:<br><br>• <strong>Plan Base</strong><br>• <strong>Plan con Destaque</strong><br>• <strong>Plan con Destaque + Verificación</strong><br><br>Cada uno incluye diferentes niveles de exposición y beneficios adicionales.<br><br>Podés ver la tabla completa y actualizada de planes en el siguiente enlace:<br>👉 <a href="' . route('planes') . '" style="color:#C8A235;text-decoration:underline;">Ingresá acá para ver los planes disponibles</a>'
+                    'a' => 'Contamos con varias opciones de suscripción para que elijas la que mejor se adapte a tu estilo y a la visibilidad que querés lograr dentro de la plataforma.<br><br>Actualmente ofrecemos:<br><br>• <strong>Plan Base</strong><br>• <strong>Plan con Destaque</strong><br>• <strong>Plan con Destaque + Verificación</strong><br><br>Cada uno incluye diferentes niveles de exposición y beneficios adicionales.<br><br>Podés ver la tabla completa y actualizada de planes en el siguiente enlace:<br>👉 <a href="' . route('planes') . '" style="color: var(--brand-primary);text-decoration:underline;">Ingresá acá para ver los planes disponibles</a>'
                 ],
                 [
                     'q' => '¿Que metodos de pago aceptan?',
@@ -101,7 +100,7 @@ body { background-color: #160E06 !important; }
                 ],
                 [
                     'q' => '¿La plataforma es accesible desde celular?',
-                    'a' => 'Si, VIP Companions esta completamente optimizada para dispositivos moviles. Tambien puedes instalarla como aplicacion web progresiva (PWA) desde tu navegador para acceder sin conexion y recibir notificaciones push.'
+                    'a' => 'Si, Elite Companions esta completamente optimizada para dispositivos moviles. Tambien puedes instalarla como aplicacion web progresiva (PWA) desde tu navegador para acceder sin conexion y recibir notificaciones push.'
                 ],
                 [
                     'q' => '¿Como contacto a soporte?',
@@ -119,15 +118,14 @@ body { background-color: #160E06 !important; }
                 <div class="ec-card rounded-xl overflow-hidden shadow-sm">
                     <button
                         @click="activeItem = activeItem === {{ $index }} ? null : {{ $index }}"
-                        class="w-full flex items-center justify-between px-5 py-4 text-left"
-                        style="background:#2C1C0E;"
+                        class="w-full flex items-center justify-between px-5 py-4 text-left bg-white"
                         :aria-expanded="activeItem === {{ $index }}"
                     >
-                        <span class="text-sm pr-4" style="color:#C8A235;">{{ $faq['q'] }}</span>
+                        <span class="text-sm pr-4" style="color: var(--brand-primary);">{{ $faq['q'] }}</span>
                         <svg
                             class="w-5 h-5 flex-shrink-0 transition-transform duration-200"
                             :class="activeItem === {{ $index }} ? 'rotate-180' : ''"
-                            style="color:#C8A235;"
+                            style="color: var(--brand-primary);"
                             fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         >
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
@@ -139,9 +137,9 @@ body { background-color: #160E06 !important; }
                         x-transition:enter-start="opacity-0 transform -translate-y-1"
                         x-transition:enter-end="opacity-100 transform translate-y-0"
                         x-cloak
-                        class="px-5 pb-5 border-t" style="background:#2C1C0E;border-color:#4A3018;"
+                        class="px-5 pb-5 bg-white border-t border-gray-100"
                     >
-                        <p class="text-sm leading-relaxed" style="color:#8A6848;">{!! $faq['a'] !!}</p>
+                        <p class="text-sm text-gray-400 leading-relaxed">{!! $faq['a'] !!}</p>
                     </div>
                 </div>
             @endforeach
@@ -149,12 +147,12 @@ body { background-color: #160E06 !important; }
     @endif
 
     {{-- Contact CTA --}}
-    <div class="mt-10 ec-card rounded-2xl shadow-sm p-6 text-center">
-        <p class="mb-1" style="color:#F5EDD8;">¿No encontraste respuesta a tu pregunta?</p>
-        <p class="text-sm mb-5" style="color:#8A6848;">Nuestro equipo de soporte está disponible para ayudarte.</p>
+    <div class="mt-10 ec-card rounded-2xl shadow-sm p-6 text-center bg-white">
+        <p class="text-gray-700 mb-1">¿No encontraste respuesta a tu pregunta?</p>
+        <p class="text-sm text-gray-500 mb-5">Nuestro equipo de soporte está disponible para ayudarte.</p>
         <a href="{{ route('support') }}"
            class="inline-block text-white text-sm font-semibold px-6 py-2.5 rounded-full transition"
-           style="background:linear-gradient(135deg,#C8A235,#E8BE50);">
+           style="background:var(--gradient-accent-brand);">
             Contactar soporte
         </a>
     </div>

@@ -15,8 +15,11 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Web\TelegramBotWebhookController;
+use App\Http\Controllers\Web\ContactTrackController;
 use App\Models\SubscriptionPlan;
 use App\Http\Controllers\Web\PasswordChangeController;
+use App\Http\Controllers\Web\VideoUploadController;
+use App\Http\Controllers\Web\AccountDeletionController;
 use App\Http\Controllers\SitemapController;
 
 // Sitemap
@@ -25,8 +28,10 @@ Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap')
 // Public routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// ── Canonical URLs: /modelo ────────────────────────────────────────────────
-Route::get('/modelo', [HomeController::class, 'escorts'])->name('modelos.index');
+// ── Canonical URLs: /avisos ────────────────────────────────────────────────
+Route::get('/avisos', [HomeController::class, 'escorts'])->name('modelos.index');
+Route::get('/modelo', fn() => redirect('/avisos', 301));
+Route::get('/modelos', [HomeController::class, 'modelosList'])->name('modelos.list');
 // NOTE: /modelo/{escort} is defined AFTER all static /modelo/* routes to avoid
 // the dynamic segment capturing "dashboard", "kyc", etc. (see bottom of file)
 
@@ -40,6 +45,12 @@ Route::middleware(['auth', 'verified'])->post(
     [ReviewController::class, 'store']
 )->name('reviews.store');
 
+// ── Contact tracking (subscribers only, silent fail) ─────────────────────
+Route::middleware(['auth', 'verified'])->post(
+    '/aviso/{aviso}/contacto',
+    [ContactTrackController::class, 'store']
+)->name('contact.track');
+
 // ── Favorite toggle ───────────────────────────────────────────────────────
 Route::middleware(['auth', 'verified'])->post(
     '/modelo/{modelo}/favorito',
@@ -50,7 +61,10 @@ Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 // /buscar → /search (redirect 301)
 Route::get('/buscar', fn() => redirect('/search', 301))->name('buscar');
+
+// ── Aviso public routes ───────────────────────────────────────────────────
 Route::get('/aviso/{id}', [AvisoController::class, 'show'])->name('aviso.show');
+Route::get('/aviso/{id}/details', [AvisoController::class, 'details'])->name('aviso.details');
 Route::post('/aviso/{id}/report', [AvisoController::class, 'report'])->name('aviso.report')->middleware(['auth', 'verified', 'role:subscriber']);
 Route::get('/terminos', function () {
     $page = App\Models\LegalPage::find('terms');
@@ -82,13 +96,13 @@ Route::get('/planes', function () {
 // Auth routes
 Route::middleware('guest')->group(function () {
     Route::get('/registro', [RegisterController::class, 'showForm'])->name('register');
-    Route::post('/registro', [RegisterController::class, 'register']);
+    Route::post('/registro', [RegisterController::class, 'register'])->middleware('throttle:5,10');
     Route::get('/login', [LoginController::class, 'showForm'])->name('login');
     Route::post('/login', [LoginController::class, 'login']);
 
     // Password reset — solicitud (solo guest)
     Route::get('/recuperar-contrasena', [PasswordResetController::class, 'showRequestForm'])->name('password.request');
-    Route::post('/recuperar-contrasena', [PasswordResetController::class, 'sendResetLink'])->name('password.email');
+    Route::post('/recuperar-contrasena', [PasswordResetController::class, 'sendResetLink'])->name('password.email')->middleware('throttle:5,10');
 });
 
 // Password reset — formulario y guardado (accesible aunque esté logueado, el link del email debe funcionar siempre)
@@ -103,9 +117,20 @@ Route::post('/reenviar-verificacion', [EmailVerificationController::class, 'rese
 Route::middleware(['auth', 'verified', 'role:modelo'])->prefix('modelo')->name('modelo.')->group(function () {
     Route::get('/dashboard', [ModeloDashboardController::class, 'index'])->name('dashboard');
     Route::get('/kyc', [ModeloDashboardController::class, 'kyc'])->name('kyc');
-    Route::get('/aviso/editar', [ModeloDashboardController::class, 'editAviso'])->middleware('kyc.approved')->name('aviso.edit');
+
+    // ── Mis Avisos (lista + edición) ──────────────────────────────────────
+    Route::get('/avisos', [ModeloDashboardController::class, 'avisoIndex'])->middleware('kyc.approved')->name('aviso.index');
+    Route::get('/avisos/crear', [ModeloDashboardController::class, 'createAviso'])->middleware('kyc.approved')->name('aviso.create');
+    Route::post('/avisos', [ModeloDashboardController::class, 'storeAviso'])->middleware('kyc.approved')->name('aviso.store');
+    Route::get('/avisos/{avisoId}/editar', [ModeloDashboardController::class, 'editAviso'])->middleware('kyc.approved')->name('aviso.edit.specific');
+    Route::post('/avisos/{avisoId}/video', [VideoUploadController::class, 'store'])->middleware('kyc.approved')->name('aviso.video.upload');
+    Route::delete('/video/{video}', [VideoUploadController::class, 'destroy'])->middleware('kyc.approved')->name('aviso.video.destroy');
+    // Legacy: /aviso/editar → /avisos (list)
+    Route::get('/aviso/editar', fn() => redirect()->route('modelo.aviso.index'))->name('aviso.edit');
+
     Route::get('/suscripcion', [ModeloDashboardController::class, 'subscription'])->name('subscription');
     Route::post('/suscripcion/pagar', [ModeloDashboardController::class, 'subscriptionPay'])->name('subscription.pay');
+    Route::post('/suscripcion/mercadopago', [ModeloDashboardController::class, 'subscriptionMercadoPago'])->name('subscription.mercadopago');
     Route::get('/notificaciones', [ModeloDashboardController::class, 'notifications'])->name('notifications');
     Route::post('/notificaciones/leer-todas', [ModeloDashboardController::class, 'markAllRead'])->name('notifications.read-all');
     Route::patch('/notificaciones/{id}/leer', [ModeloDashboardController::class, 'markRead'])->name('notifications.read');
@@ -118,6 +143,7 @@ Route::middleware(['auth', 'verified', 'role:modelo'])->prefix('modelo')->name('
     Route::post('/seguridad', [PasswordChangeController::class, 'updateEscort'])->name('security.update');
 
     // Datos de contacto (email privado, teléfono, contacto público, ubicación, domicilio)
+    Route::get('/perfil', [ModeloDashboardController::class, 'perfil'])->name('perfil');
     Route::patch('/contacto', [ModeloDashboardController::class, 'updateContact'])->name('contact.update');
 
     // Reseñas recibidas
@@ -138,21 +164,23 @@ Route::middleware(['auth', 'verified', 'role:subscriber'])->prefix('suscriptor')
     Route::get('/notificaciones', [SubscriberDashboardController::class, 'notifications'])->name('notifications');
     Route::get('/reportes', [SubscriberDashboardController::class, 'reports'])->name('reports');
     Route::post('/reportes', [SubscriberDashboardController::class, 'storeReport'])->name('reports.store');
+    Route::get('/historial-contactos', [SubscriberDashboardController::class, 'contactHistory'])->name('contact.history');
 
     // Cambio de contraseña
     Route::get('/seguridad', [PasswordChangeController::class, 'showSubscriber'])->name('security');
     Route::post('/seguridad', [PasswordChangeController::class, 'updateSubscriber'])->name('security.update');
-    Route::get('/historial-contactos', [SubscriberDashboardController::class, 'contactHistory'])->name('contact.history');
 });
 
 // ── Public model profile (MUST be last among /modelo/* routes so that static
 //    segments like /modelo/dashboard, /modelo/kyc etc. are matched first) ────
 Route::get('/modelo/{modelo}', [ModeloController::class, 'show'])->name('modelos.show');
 
-// Telegram Bot Webhook — excluido del CSRF en bootstrap/app.php
-Route::post('/aviso/{aviso}/contacto', [\App\Http\Controllers\Web\ContactTrackController::class, 'store'])
-    ->middleware(['auth', 'verified', 'role:subscriber'])
-    ->name('contact.track');
+// Account deletion request (accessible to both modelo and subscriber)
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/cuenta/eliminar', [AccountDeletionController::class, 'show'])->name('account.delete.show');
+    Route::post('/cuenta/eliminar', [AccountDeletionController::class, 'store'])->name('account.delete.store');
+});
 
+// Telegram Bot Webhook — excluido del CSRF en bootstrap/app.php
 Route::post('/telegram/webhook', [TelegramBotWebhookController::class, 'handle'])
     ->name('telegram.webhook');

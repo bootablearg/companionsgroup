@@ -2,7 +2,7 @@
 <div x-data="{ active: 0, lightbox: false }" class="space-y-3">
     {{-- Main image --}}
     @if($photos->count())
-        <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-gray-900 cursor-zoom-in relative"
+        <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-page-background cursor-zoom-in relative"
              @click="lightbox = true">
             @foreach($photos as $i => $photo)
                 <img x-show="active === {{ $i }}"
@@ -11,7 +11,7 @@
                      alt="Foto {{ $i + 1 }}"
                      @if($i > 0) style="display:none" @endif>
             @endforeach
-            <div class="absolute bottom-3 right-3 bg-black/60 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">
+            <div class="absolute bottom-3 right-3 bg-black/60 text-text-primary text-xs px-3 py-1 rounded-full backdrop-blur-sm">
                 <span x-text="active + 1"></span> / {{ $photos->count() }}
             </div>
         </div>
@@ -38,7 +38,7 @@
              @click.self="lightbox = false"
              @keydown.escape.window="lightbox = false">
             <button @click="lightbox = false"
-                    class="absolute top-5 right-5 text-white/60 hover:text-white z-10">
+                    class="absolute top-5 right-5 text-text-primary/60 hover:text-text-primary z-10">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                 </svg>
@@ -52,13 +52,13 @@
             @endforeach
             @if($photos->count() > 1)
                 <button @click="active = (active - 1 + {{ $photos->count() }}) % {{ $photos->count() }}"
-                        class="absolute left-5 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white p-3 rounded-full backdrop-blur-sm">
+                        class="absolute left-5 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-text-primary p-3 rounded-full backdrop-blur-sm">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                     </svg>
                 </button>
                 <button @click="active = (active + 1) % {{ $photos->count() }}"
-                        class="absolute right-5 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white p-3 rounded-full backdrop-blur-sm">
+                        class="absolute right-5 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-text-primary p-3 rounded-full backdrop-blur-sm">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                     </svg>
@@ -66,7 +66,7 @@
             @endif
         </div>
     @else
-        <div class="aspect-[4/3] rounded-2xl bg-gray-900 border border-gray-800 flex items-center justify-center">
+        <div class="aspect-[4/3] rounded-2xl bg-page-background border border-border-default flex items-center justify-center">
             <svg class="w-20 h-20 text-gray-700" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
             </svg>
@@ -79,7 +79,7 @@
             <h4 class="text-sm font-semibold text-gray-400 mb-3">Videos ({{ $videos->count() }})</h4>
             <div class="grid grid-cols-{{ min($videos->count(), 3) }} gap-3">
                 @foreach($videos as $video)
-                    <video controls class="rounded-xl border border-gray-700 w-full" preload="metadata">
+                    <video controls class="rounded-xl border border-border-subtle w-full" preload="metadata">
                         <source src="{{ Storage::url($video->file_path) }}">
                         Tu navegador no soporta la reproducción de video.
                     </video>

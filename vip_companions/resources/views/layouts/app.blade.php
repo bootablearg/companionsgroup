@@ -3,45 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#1A1510">
+    <meta name="theme-color" content="var(--brand-primary)">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'VIP Companions - Argentina')</title>
+    <title>@yield('title', 'Elite Companions - Argentina')</title>
     @if(app()->environment('production'))
     <meta name="robots" content="index, follow">
     @else
     <meta name="robots" content="noindex, nofollow">
     @endif
-    <meta name="description" content="@yield('meta_description', 'VIP Companions Argentina — Plataforma de compañía profesional para reuniones, cenas de trabajo y eventos corporativos.')">
-    <meta name="keywords" content="@yield('meta_keywords', 'acompañamiento profesional, reuniones corporativas, cenas de trabajo, eventos empresariales, presencia ejecutiva, comunicación profesional, protocolo social, networking corporativo, conferencias, presentaciones ejecutivas')">
+    <meta name="description" content="@yield('meta_description', 'Escorts elite y acompañantes reales en Buenos Aires. Perfiles verificados, fotos reales, discreción total. Alternativa premium a AreaVIP, ArgentinaBlack, Solo Independientes y Gemidos.')">
+    <meta name="keywords" content="@yield('meta_keywords', 'escorts argentina, escorts en argentina, escorts buenos aires, escorts en buenos aires, escorts capital federal, escorts en capital federal, escorts ciudad de buenos aires, escorts en ciudad de buenos aires, putas argentina, putas en argentina, putas buenos aires, putas en buenos aires, putas capital federal, putas ciudad de buenos aires, trolas argentina, trolas en argentina, trolas buenos aires, trolas en buenos aires, atorrantas argentina, atorrantas en argentina, atorrantas buenos aires, atorrantas en buenos aires, mujeres argentina, mujeres buenos aires, mujeres capital federal, trans argentina, trans en argentina, trans buenos aires, trans en buenos aires, trans capital federal, trans ciudad de buenos aires, taxiboy argentina, taxiboy en argentina, taxiboy buenos aires, taxiboy en buenos aires, taxiboy capital federal, taxiboy ciudad de buenos aires, escorts vip argentina, escorts vip en argentina, escorts vip buenos aires, escorts vip en buenos aires, escorts vip capital federal, escorts vip ciudad de buenos aires, putas vip argentina, putas vip buenos aires, trolas vip argentina, trolas vip buenos aires, atorrantas vip argentina, atorrantas vip buenos aires, mujeres vip argentina, mujeres vip buenos aires, trans vip argentina, trans vip buenos aires, taxiboy vip argentina, taxiboy vip buenos aires, AreaVIP, Area-VIP, Area-Vip, areavip argentina, areavip escorts, ArgentinaBlack, argentina black escorts, argentina black vip, ArgentinaXP, argentina xp, argentinaxp escorts, Bairesgirls, Baires Girls, bairesgirls escorts, Gemidos, gemidos escorts argentina, Solo Independientes, SoloIndependientes, soloindependientes escorts, Soy Tuyo, soytuyo escorts, Tacos Altos, TacosAltos, Foro Escorts, ForoEscorts, ForoXP, Foro Pirata, acompañantes argentina, acompañantes buenos aires, acompañantes capital federal, acompañantes vip argentina, acompañantes independientes argentina, escorts independientes argentina, escorts independientes buenos aires, escorts de lujo argentina, escorts premium argentina')">
     <link rel="canonical" href="@yield('canonical', url()->current())">
 
     <!-- Open Graph -->
     <meta property="og:type" content="@yield('og_type', 'website')">
-    <meta property="og:title" content="@yield('og_title', 'VIP Companions - Argentina')">
-    <meta property="og:description" content="@yield('og_description', 'Plataforma de compañía profesional para reuniones, cenas de trabajo y eventos corporativos en Argentina.')">
+    <meta property="og:title" content="@yield('og_title', 'Elite Companions - Argentina')">
+    <meta property="og:description" content="@yield('og_description', 'Plataforma premium de compañía para eventos exclusivos, galas y networking social.')">
     <meta property="og:url" content="@yield('canonical', url()->current())">
     <meta property="og:image" content="@yield('og_image', asset('images/logo.webp'))">
-    <meta property="og:site_name" content="VIP Companions">
+    <meta property="og:site_name" content="Elite Companions">
     <meta property="og:locale" content="es_AR">
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@yield('twitter_title', 'VIP Companions - Argentina')">
-    <meta name="twitter:description" content="@yield('twitter_description', 'Presencia ejecutiva para eventos corporativos.')">
+    <meta name="twitter:title" content="@yield('twitter_title', 'Elite Companions - Argentina')">
+    <meta name="twitter:description" content="@yield('twitter_description', 'Elegancia y presencia para eventos exclusivos.')">
     <meta name="twitter:image" content="@yield('og_image', asset('images/logo.webp'))">
 
     <link rel="manifest" href="/manifest.json">
-    <link rel="icon" type="image/png" href="/favicon.png?v=2">
+    <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="apple-touch-icon" href="/icons/icon-192.png">
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QEK29L520G"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-QEK29L520G');
-    </script>
 
     @livewireStyles
 
@@ -49,51 +40,32 @@
 
     <style>
         [x-cloak] { display: none !important; }
-
-        :root {
-            --vip-black:   #1A1510;
-            --vip-dark:    #160E06;
-            --vip-dark2:   #201408;
-            --vip-card:    #2C1C0E;
-            --vip-border:  #4A3018;
-            --vip-sepia:   #201408;
-            --vip-gold:    #C8A235;
-            --vip-gold-lt: #E8BE50;
-            --vip-text:    #F5EDD8;
-            --vip-text2:   #C0946A;
-        }
-
-        body {
-            background-color: var(--vip-dark);
-            color: #F5EDD8;
-        }
-
+        body { background-color: var(--background, var(--page-background)); color: var(--text-dark, var(--text-primary)); }
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--vip-dark); }
-        ::-webkit-scrollbar-thumb { background: var(--vip-border); border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--vip-gold); }
-
-        /* Gold gradient button used in nav */
+        ::-webkit-scrollbar-track { background: var(--border-muted, var(--border-subtle)); }
+        ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--brand-primary, var(--brand-primary)); }
         .btn-gradient {
-            background: linear-gradient(135deg, #7A5A18, #C8A235);
-            color: #1A1510;
-            font-weight: 700;
-            transition: all .2s;
+            background: linear-gradient(135deg, var(--brand-primary, var(--brand-primary)), var(--brand-accent, var(--action-secondary)));
+            color: var(--btn-primary-text);
+            transition: opacity .2s;
         }
-        .btn-gradient:hover {
-            background: linear-gradient(135deg, #C8A235, #E8BE50);
-            box-shadow: 0 4px 16px rgba(200,162,53,0.30);
+        .btn-gradient:hover { opacity: .9; }
+        .btn-nav-ghost {
+            background: none;
+            border: 1.5px solid var(--brand-primary-300);
+            color: var(--brand-primary);
+            transition: background .15s, color .15s, border-color .15s;
         }
-
-        /* Gold text logo */
-        .logo-text {
-            background: linear-gradient(135deg, #C8A235, #E8BE50);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Navbar responsive */
+        .btn-nav-ghost:hover { background: var(--surface-accent-soft-bg); border-color: var(--brand-primary); }
+        /* Footer */
+        .site-footer { background: var(--surface-card) !important; border-top: 1px solid var(--border-default) !important; }
+        .site-footer p, .site-footer li, .site-footer span:not(.font-extrabold) { color: var(--text-secondary) !important; }
+        .site-footer h3 { color: var(--text-empty-state) !important; }
+        .site-footer a:not(.flex) { color: var(--text-secondary) !important; }
+        .site-footer a:not(.flex):hover { color: var(--brand-primary) !important; }
+        .site-footer .footer-divider { border-color: var(--border-default) !important; }
+        /* Navbar responsive — avoids Tailwind CDN missing rules */
         .nav-desktop { display: inline-block; }
         .nav-mobile-toggle { display: none; }
         .nav-mobile-panel { display: none; }
@@ -102,82 +74,138 @@
             .nav-mobile-toggle { display: block; }
             .nav-mobile-panel.nav-mobile-open { display: block; }
         }
-
         @yield('page_style')
     </style>
 
     @stack('head')
     @stack('json_ld')
+
+    @if (isset($theme) && is_array($theme) && isset($theme['colors']) && count($theme['colors']) > 0)
+        <!-- Theme colors loaded: {{ count($theme['colors']) }} tokens -->
+        <style>
+            :root {
+                @foreach ($theme['colors'] as $name => $value)
+                    --{{ str_replace('_', '-', $name) }}: {{ $value }};
+                @endforeach
+                @foreach ($theme['typography'] as $name => $value)
+                    --{{ str_replace('_', '-', $name) }}: {{ $value }};
+                @endforeach
+            }
+
+            /* Override Tailwind background colors */
+            .bg-brand-primary { background-color: var(--brand-primary) !important; }
+            .bg-brand-accent { background-color: var(--action-secondary) !important; }
+            .bg-background { background-color: var(--page-background) !important; }
+            .bg-surface-white { background-color: var(--surface-card) !important; }
+            .bg-surface-light { background-color: var(--surface-secondary) !important; }
+            .bg-surface-muted { background-color: var(--surface-tertiary) !important; }
+            .bg-success { background-color: var(--success) !important; }
+            .bg-warning { background-color: var(--warning) !important; }
+            .bg-error { background-color: var(--error) !important; }
+            .bg-info { background-color: var(--info) !important; }
+
+            /* Override text colors */
+            .text-brand-primary { color: var(--brand-primary) !important; }
+            .text-brand-accent { color: var(--action-secondary) !important; }
+            .text-dark { color: var(--text-primary) !important; }
+            .text-muted { color: var(--text-secondary) !important; }
+            .text-link { color: var(--text-link) !important; }
+            .text-success { color: var(--success) !important; }
+            .text-warning { color: var(--warning) !important; }
+            .text-error { color: var(--error) !important; }
+            .text-info { color: var(--info) !important; }
+
+            /* Override border colors */
+            .border-brand-primary { border-color: var(--brand-primary) !important; }
+            .border-light { border-color: var(--border-default) !important; }
+            .border-muted { border-color: var(--border-subtle) !important; }
+
+            /* Override ring/focus colors */
+            .ring-brand-primary { --tw-ring-color: var(--brand-primary) !important; }
+            .focus\:ring-brand-primary:focus { --tw-ring-color: var(--brand-primary) !important; }
+
+            /* Gradients */
+            .gradient-primary {
+                background: var(--gradient-accent-brand) !important;
+            }
+
+        </style>
+    @endif
 </head>
-<body class="min-h-screen flex flex-col antialiased">
+<body class="min-h-screen flex flex-col antialiased" style="background:var(--background, var(--page-background));">
 
     <!-- Cookie Banner -->
     <x-cookie-banner />
 
     <!-- Navigation -->
-    <header class="sticky top-0 z-50 shadow-lg" style="background-color:#1A1510;border-bottom:1px solid #2C1C0E;">
+    <header class="sticky top-0 z-50" style="background:var(--surface-card);border-bottom:1px solid var(--border-default);">
         <nav class="w-full px-3">
-            <div class="grid grid-cols-3 items-center h-20">
+            <div class="relative flex items-center justify-between h-16">
 
-                <!-- Left: Buscar / Listado buttons -->
+                <!-- Left: Buscar modelo + Listado buttons -->
                 <div class="flex items-center gap-2">
                     <a href="{{ route('search') }}"
-                       class="btn-gradient nav-desktop text-sm font-bold px-5 py-2 rounded-full shadow-sm">
+                       class="btn-gradient nav-desktop text-sm font-semibold px-5 py-2 rounded-full">
                         Buscar modelo
                     </a>
                     <a href="{{ route('modelos.index') }}"
-                       class="btn-gradient nav-desktop text-sm font-bold px-5 py-2 rounded-full shadow-sm">
+                       class="btn-gradient nav-desktop text-sm font-semibold px-5 py-2 rounded-full">
+                        Listado de Avisos
+                    </a>
+                    <a href="{{ route('modelos.list') }}"
+                       class="btn-gradient nav-desktop text-sm font-semibold px-5 py-2 rounded-full">
                         Listado de Modelos
                     </a>
                 </div>
 
-                <!-- Center: Logo (col 2 de 3 — centrado exacto) -->
-                <div class="flex justify-center">
-                    <a href="{{ route('home') }}">
-                        <img src="/images/logo_circle.webp" alt="VIP Companions" style="height:72px;width:72px;border-radius:50%;object-fit:cover;">
+                <!-- Center: absolutamente centrado -->
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <a href="{{ route('home') }}" class="pointer-events-auto">
+                        <span style="font-size:1.44rem;font-weight:800;letter-spacing:-.025em;background:linear-gradient(135deg,var(--brand-primary, var(--brand-primary)),var(--brand-accent, var(--action-secondary)));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+                            Elite Companions
+                        </span>
                     </a>
                 </div>
 
                 <!-- Right: Auth Buttons -->
-                <div class="flex items-center justify-end gap-2">
+                <div class="flex items-center gap-2">
                     @auth
                         @if(auth()->user()->role === 'modelo')
                             <a href="{{ route('modelo.dashboard') }}"
-                               class="btn-gradient nav-desktop text-sm font-bold px-5 py-2 rounded-full shadow-sm">
+                               class="btn-gradient nav-desktop text-sm font-semibold px-5 py-2 rounded-full">
                                 Mi Panel
                             </a>
                         @elseif(auth()->user()->role === 'subscriber')
                             <a href="{{ route('subscriber.dashboard') }}"
-                               class="btn-gradient nav-desktop text-sm font-bold px-5 py-2 rounded-full shadow-sm">
+                               class="btn-gradient nav-desktop text-sm font-semibold px-5 py-2 rounded-full">
                                 Mi Panel
                             </a>
                         @elseif(auth()->user()->role === 'admin')
                             <a href="{{ route('admin.dashboard') }}"
-                               class="btn-gradient nav-desktop text-sm font-bold px-5 py-2 rounded-full shadow-sm">
+                               class="btn-gradient nav-desktop text-sm font-semibold px-5 py-2 rounded-full">
                                 Admin
                             </a>
                         @endif
                         <form method="POST" action="{{ route('logout') }}" class="inline">
                             @csrf
                             <button type="submit"
-                                    class="btn-gradient nav-desktop text-sm font-bold px-5 py-2 rounded-full shadow-sm">
+                                    class="btn-gradient nav-desktop text-sm font-semibold px-5 py-2 rounded-full">
                                 Salir
                             </button>
                         </form>
                     @else
                         <a href="{{ route('login') }}"
-                           class="btn-gradient nav-desktop text-sm font-bold px-5 py-2 rounded-full shadow-sm">
+                           class="btn-gradient nav-desktop text-sm font-semibold px-5 py-2 rounded-full">
                             Iniciar sesión
                         </a>
                         <a href="{{ route('register') }}"
-                           class="btn-gradient nav-desktop text-sm font-bold px-5 py-2 rounded-full shadow-sm">
+                           class="btn-gradient nav-desktop text-sm font-semibold px-5 py-2 rounded-full">
                             Hacete miembro
                         </a>
                     @endauth
 
                     <!-- Mobile menu button -->
-                    <button class="nav-mobile-toggle p-1.5 transition-colors"
-                            style="color:#C0946A;"
+                    <button class="nav-mobile-toggle p-1.5" style="color:var(--text-secondary);"
                             onclick="this.closest('nav').querySelector('.nav-mobile-panel').classList.toggle('nav-mobile-open')"
                             aria-label="Menu">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -188,42 +216,46 @@
             </div>
 
             <!-- Mobile Nav -->
-            <div class="nav-mobile-panel pb-3 pt-2" style="border-top:1px solid #2C1C0E;">
+            <div class="nav-mobile-panel pb-3 pt-2" style="border-top:1px solid var(--border-default);">
                 <div class="flex flex-col gap-2 px-1">
                     <a href="{{ route('search') }}"
-                       class="btn-gradient text-sm font-bold px-5 py-2.5 rounded-full text-center shadow-sm">
+                       class="btn-gradient text-sm font-semibold px-5 py-2.5 rounded-full text-center">
                         Buscar modelo
                     </a>
                     <a href="{{ route('modelos.index') }}"
-                       class="btn-gradient text-sm font-bold px-5 py-2.5 rounded-full text-center shadow-sm">
+                       class="btn-gradient text-sm font-semibold px-5 py-2.5 rounded-full text-center">
+                        Listado de Avisos
+                    </a>
+                    <a href="{{ route('modelos.list') }}"
+                       class="btn-gradient text-sm font-semibold px-5 py-2.5 rounded-full text-center">
                         Listado de Modelos
                     </a>
                     @auth
                         @if(auth()->user()->role === 'modelo')
                             <a href="{{ route('modelo.dashboard') }}"
-                               class="btn-gradient text-sm font-bold px-5 py-2.5 rounded-full text-center shadow-sm">
+                               class="btn-gradient text-sm font-semibold px-5 py-2.5 rounded-full text-center">
                                 Mi Panel
                             </a>
                         @elseif(auth()->user()->role === 'subscriber')
                             <a href="{{ route('subscriber.dashboard') }}"
-                               class="btn-gradient text-sm font-bold px-5 py-2.5 rounded-full text-center shadow-sm">
+                               class="btn-gradient text-sm font-semibold px-5 py-2.5 rounded-full text-center">
                                 Mi Panel
                             </a>
                         @endif
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit"
-                                    class="btn-gradient w-full text-sm font-bold px-5 py-2.5 rounded-full text-center shadow-sm">
+                                    class="w-full btn-gradient text-sm font-semibold px-5 py-2.5 rounded-full text-center">
                                 Salir
                             </button>
                         </form>
                     @else
                         <a href="{{ route('login') }}"
-                           class="btn-gradient text-sm font-bold px-5 py-2.5 rounded-full text-center shadow-sm">
+                           class="btn-gradient text-sm font-semibold px-5 py-2.5 rounded-full text-center">
                             Iniciar sesión
                         </a>
                         <a href="{{ route('register') }}"
-                           class="btn-gradient text-sm font-bold px-5 py-2.5 rounded-full text-center shadow-sm">
+                           class="btn-gradient text-sm font-semibold px-5 py-2.5 rounded-full text-center">
                             Hacete miembro
                         </a>
                     @endauth
@@ -236,10 +268,8 @@
     @if(session('success'))
         <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 4000)"
              class="fixed top-20 right-4 z-50 px-5 py-3 rounded-xl text-sm shadow-lg flex items-center gap-2"
-             style="background:#201408;border:1px solid #5C3C20;color:#F5EDD8;">
-            <svg class="w-4 h-4 flex-shrink-0" style="color:#C8A235;" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-            </svg>
+             style="background:var(--status-success-light-bg);border:1px solid var(--status-success-light-border);color:var(--status-success-text-dark);">
+            <svg class="w-4 h-4 flex-shrink-0" style="color:var(--status-success-text);" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
             {{ session('success') }}
         </div>
     @endif
@@ -247,10 +277,17 @@
     @if(session('error'))
         <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
              class="fixed top-20 right-4 z-50 px-5 py-3 rounded-xl text-sm shadow-lg flex items-center gap-2"
-             style="background:#201408;border:1px solid #7f1d1d;color:#fca5a5;">
-            <svg class="w-4 h-4 flex-shrink-0 text-red-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
-            </svg>
+             style="background:var(--status-error-light-bg-soft);border:1px solid var(--status-error-light-border);color:var(--status-error-text-strong);">
+            <svg class="w-4 h-4 flex-shrink-0" style="color:var(--status-error-text-strong);" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
+             class="fixed top-20 right-4 z-50 px-5 py-3 rounded-xl text-sm shadow-lg flex items-center gap-2"
+             style="background:var(--status-error-light-bg-soft);border:1px solid var(--status-error-light-border);color:var(--status-error-text-strong);">
+            <svg class="w-4 h-4 flex-shrink-0" style="color:var(--status-error-text-strong);" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
             {{ session('error') }}
         </div>
     @endif
@@ -261,105 +298,93 @@
     </main>
 
     <!-- Footer -->
-    <footer class="mt-auto" style="background-color:#1A1510;border-top:1px solid #2C1C0E;">
+    <footer class="site-footer mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Brand -->
                 <div>
-                    <a href="{{ route('home') }}" class="flex items-center mb-3">
-                        <img src="/images/logo_circle.webp" alt="VIP Companions" style="height:72px;width:72px;border-radius:50%;object-fit:cover;">
+                    <a href="{{ route('home') }}" class="flex items-center gap-2.5 mb-3">
+                        <img src="/images/logo.webp" alt="Elite Companions" style="height:72px;width:auto;border-radius:50%;">
+                        <span class="font-extrabold tracking-tight"
+                              style="font-size:1.2rem;background:linear-gradient(135deg,var(--brand-primary, var(--brand-primary)),var(--brand-accent, var(--action-secondary)));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+                            Elite Companions
+                        </span>
                     </a>
-                    <p class="text-sm leading-relaxed" style="color:#8A6848;">
+                    <p class="text-sm text-gray-500 leading-relaxed">
                         Plataforma de compañía premium para adultos mayores de 18 años.
                     </p>
                 </div>
 
                 <!-- Legal -->
                 <div>
-                    <h3 class="text-xs font-semibold uppercase tracking-wider mb-4" style="color:#7A6040;">Legal</h3>
+                    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Legal</h3>
                     <ul class="space-y-2">
-                        <li><a href="{{ route('terms') }}" class="text-sm transition-colors" style="color:#8A6848;" onmouseover="this.style.color='#C8A235'" onmouseout="this.style.color='#8A6848'">Términos y Condiciones</a></li>
-                        <li><a href="{{ route('privacy') }}" class="text-sm transition-colors" style="color:#8A6848;" onmouseover="this.style.color='#C8A235'" onmouseout="this.style.color='#8A6848'">Política de Privacidad</a></li>
-                        <li><a href="#" class="text-sm transition-colors" style="color:#8A6848;" onmouseover="this.style.color='#C8A235'" onmouseout="this.style.color='#8A6848'">Política de Cookies</a></li>
+                        <li><a href="{{ route('terms') }}" class="text-sm text-gray-500 hover:text-violet-600 transition-colors">Términos y Condiciones</a></li>
+                        <li><a href="{{ route('privacy') }}" class="text-sm text-gray-500 hover:text-violet-600 transition-colors">Política de Privacidad</a></li>
+                        <li><a href="#" class="text-sm text-gray-500 hover:text-violet-600 transition-colors">Política de Cookies</a></li>
                     </ul>
                 </div>
 
                 <!-- Support -->
                 <div>
-                    <h3 class="text-xs font-semibold uppercase tracking-wider mb-4" style="color:#7A6040;">Soporte</h3>
+                    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Soporte</h3>
                     <ul class="space-y-2 mb-5">
-                        <li><a href="{{ route('faq') }}" class="text-sm transition-colors" style="color:#8A6848;" onmouseover="this.style.color='#C8A235'" onmouseout="this.style.color='#8A6848'">Preguntas Frecuentes</a></li>
-                        <li><a href="{{ route('support') }}" class="text-sm transition-colors" style="color:#8A6848;" onmouseover="this.style.color='#C8A235'" onmouseout="this.style.color='#8A6848'">Soporte</a></li>
+                        <li><a href="{{ route('faq') }}" class="text-sm text-gray-500 hover:text-violet-600 transition-colors">Preguntas Frecuentes</a></li>
+                        <li><a href="{{ route('support') }}" class="text-sm text-gray-500 hover:text-violet-600 transition-colors">Soporte</a></li>
                     </ul>
-                    <!-- Contact channels -->
+                                        <!-- Contact channels - dinamico desde DB -->
+                    @php
+                        try {
+                            $footerLinks = \App\Models\ContactLink::active()->get()->groupBy('platform');
+                        } catch (\Exception $e) {
+                            $footerLinks = collect();
+                        }
+                    @endphp
+                    @if($footerLinks->isNotEmpty())
                     <div class="flex flex-col gap-2">
-                        {{-- WhatsApp Soporte --}}
-                        <a href="https://wa.me/541166300119" target="_blank" rel="noopener"
-                           class="flex items-center gap-2 text-xs transition-colors" style="color:#8A6848;"
-                           onmouseover="this.style.color='#25D366'" onmouseout="this.style.color='#8A6848'">
-                            <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24">
-                                <path fill="#25D366" d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.405A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
-                                <path fill="#ffffff" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                        @foreach($footerLinks as $platform => $platformLinks)
+                        @foreach($platformLinks as $cl)
+                        @if($platform === 'whatsapp')
+                        <a href="{{ $cl->url }}" target="_blank" rel="noopener"
+                           class="flex items-center gap-2 text-xs text-gray-500 transition-colors"
+                           onmouseover="this.style.color='var(--social-whatsapp-bg)'" onmouseout="this.style.color=''">
+                            <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="var(--social-whatsapp-bg)" d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.405A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
+                                <path fill="var(--text-inverted)" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
                             </svg>
-                            <span>Soporte por WhatsApp</span>
+                            <span>{{ $cl->label }}</span>
                         </a>
-                        {{-- WhatsApp Bot --}}
-                        <a href="https://wa.me/541125545289" target="_blank" rel="noopener"
-                           class="flex items-center gap-2 text-xs transition-colors" style="color:#8A6848;"
-                           onmouseover="this.style.color='#25D366'" onmouseout="this.style.color='#8A6848'">
-                            <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24">
-                                <path fill="#25D366" d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.405A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
-                                <path fill="#ffffff" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                            </svg>
-                            <span>WhatsApp Bot</span>
-                        </a>
-                        {{-- WhatsApp Grupo --}}
-                        <a href="https://chat.whatsapp.com/LdjpbC0cFpgF3wxavOjtyN?mode=gi_t" target="_blank" rel="noopener"
-                           class="flex items-center gap-2 text-xs transition-colors" style="color:#8A6848;"
-                           onmouseover="this.style.color='#25D366'" onmouseout="this.style.color='#8A6848'">
-                            <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24">
-                                <path fill="#25D366" d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.405A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
-                                <path fill="#ffffff" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                            </svg>
-                            <span>Grupo de WhatsApp</span>
-                        </a>
-                        {{-- Telegram Soporte --}}
-                        <a href="https://t.me/elitecompanionsarg" target="_blank" rel="noopener"
-                           class="flex items-center gap-2 text-xs transition-colors" style="color:#8A6848;"
-                           onmouseover="this.style.color='#229ED9'" onmouseout="this.style.color='#8A6848'">
-                            <svg style="color:#229ED9" class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                        @elseif($platform === 'telegram')
+                        <a href="{{ $cl->url }}" target="_blank" rel="noopener"
+                           class="flex items-center gap-2 text-xs text-gray-500 transition-colors"
+                           onmouseover="this.style.color='var(--social-telegram-bg)'" onmouseout="this.style.color=''">
+                            <svg style="color:var(--social-telegram-bg)" class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
                             </svg>
-                            <span>Soporte por Telegram</span>
+                            <span>{{ $cl->label }}</span>
                         </a>
-                        {{-- Telegram Bot --}}
-                        <a href="https://t.me/elitecompanionsarg_bot" target="_blank" rel="noopener"
-                           class="flex items-center gap-2 text-xs transition-colors" style="color:#8A6848;"
-                           onmouseover="this.style.color='#229ED9'" onmouseout="this.style.color='#8A6848'">
-                            <svg style="color:#229ED9" class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                        @elseif($platform === 'discord')
+                        <a href="{{ $cl->url }}" target="_blank" rel="noopener"
+                           class="flex items-center gap-2 text-xs text-gray-500 transition-colors"
+                           onmouseover="this.style.color='var(--social-discord-bg)'" onmouseout="this.style.color=''">
+                            <svg style="color:var(--social-discord-bg)" class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.031.056a19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/>
                             </svg>
-                            <span>Telegram Bot</span>
+                            <span>{{ $cl->label }}</span>
                         </a>
-                        {{-- Telegram Grupo --}}
-                        <a href="https://t.me/+nISG7CVO29JmYWEx" target="_blank" rel="noopener"
-                           class="flex items-center gap-2 text-xs transition-colors" style="color:#8A6848;"
-                           onmouseover="this.style.color='#229ED9'" onmouseout="this.style.color='#8A6848'">
-                            <svg style="color:#229ED9" class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.277-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                            </svg>
-                            <span>Grupo de Telegram</span>
-                        </a>
+                        @endif
+                        @endforeach
+                        @endforeach
                     </div>
+                    @endif
                 </div>
             </div>
 
-            <div class="mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3"
-                 style="border-top:1px solid #2C1C0E;">
-                <p class="text-xs" style="color:#8A6848;">
-                    &copy; {{ date('Y') }} VIP Companions. Todos los derechos reservados. Solo para mayores de 18 años.
+            <div class="footer-divider mt-8 pt-6 border-t flex flex-col sm:flex-row items-center justify-between gap-3">
+                <p class="text-xs text-gray-400">
+                    &copy; {{ date('Y') }} Elite Companions. Todos los derechos reservados. Solo para mayores de 18 años.
                 </p>
-                <p class="text-xs" style="color:#8A6848;">
+                <p class="text-xs text-gray-400">
                     Al utilizar este sitio, confirmas tener 18 años o más.
                 </p>
             </div>
