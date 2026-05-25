@@ -21,9 +21,14 @@ use App\Http\Controllers\Web\PasswordChangeController;
 use App\Http\Controllers\Web\VideoUploadController;
 use App\Http\Controllers\Web\AccountDeletionController;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\Web\BlogController;
 
 // Sitemap
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+
+// Blog
+Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
 // Public routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -35,9 +40,12 @@ Route::get('/modelos', [HomeController::class, 'modelosList'])->name('modelos.li
 // NOTE: /modelo/{escort} is defined AFTER all static /modelo/* routes to avoid
 // the dynamic segment capturing "dashboard", "kyc", etc. (see bottom of file)
 
-// ── Legacy redirects (301) ────────────────────────────────────────────────
-Route::get('/escorts', fn() => redirect('/modelo', 301));
-Route::get('/escorts/{escort}', fn($modelo) => redirect("/modelo/{$modelo}", 301));
+// ── SEO slug routes ───────────────────────────────────────────────────────
+Route::get('/escorts/{slug}', [AvisoController::class, 'showBySlug'])->name('aviso.show.slug');
+Route::get('/escorts', fn() => redirect('/avisos', 301));
+
+// ── Landing pages por barrio CABA ─────────────────────────────────────────
+Route::get('/modelos-premium-{barrio}', [\App\Http\Controllers\Web\LandingBarrioController::class, 'showElite'])->name('landing.barrio.elite');
 
 // ── Review submission (authenticated subscribers only) ────────────────────
 Route::middleware(['auth', 'verified'])->post(
@@ -46,7 +54,7 @@ Route::middleware(['auth', 'verified'])->post(
 )->name('reviews.store');
 
 // ── Contact tracking (subscribers only, silent fail) ─────────────────────
-Route::middleware(['auth', 'verified'])->post(
+Route::middleware(['auth', 'verified', 'throttle:60,1'])->post(
     '/aviso/{aviso}/contacto',
     [ContactTrackController::class, 'store']
 )->name('contact.track');
@@ -98,7 +106,7 @@ Route::middleware('guest')->group(function () {
     Route::get('/registro', [RegisterController::class, 'showForm'])->name('register');
     Route::post('/registro', [RegisterController::class, 'register'])->middleware('throttle:5,10');
     Route::get('/login', [LoginController::class, 'showForm'])->name('login');
-    Route::post('/login', [LoginController::class, 'login']);
+    Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:5,2');
 
     // Password reset — solicitud (solo guest)
     Route::get('/recuperar-contrasena', [PasswordResetController::class, 'showRequestForm'])->name('password.request');
@@ -107,11 +115,11 @@ Route::middleware('guest')->group(function () {
 
 // Password reset — formulario y guardado (accesible aunque esté logueado, el link del email debe funcionar siempre)
 Route::get('/nueva-contrasena/{token}', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
-Route::post('/nueva-contrasena', [PasswordResetController::class, 'resetPassword'])->name('password.update');
+Route::post('/nueva-contrasena', [PasswordResetController::class, 'resetPassword'])->name('password.update')->middleware('throttle:5,10');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 Route::get('/verificar-email/{token}', [EmailVerificationController::class, 'verify'])->name('verify.email');
 Route::get('/verificar-email', fn() => view('auth.verify-notice'))->name('verification.notice')->middleware('auth');
-Route::post('/reenviar-verificacion', [EmailVerificationController::class, 'resend'])->name('verify.resend')->middleware('auth');
+Route::post('/reenviar-verificacion', [EmailVerificationController::class, 'resend'])->name('verify.resend')->middleware(['auth', 'throttle:3,10']);
 
 // Escort dashboard
 Route::middleware(['auth', 'verified', 'role:modelo'])->prefix('modelo')->name('modelo.')->group(function () {
@@ -155,20 +163,23 @@ Route::middleware(['auth', 'verified', 'role:modelo'])->prefix('modelo')->name('
 
 // Subscriber dashboard
 Route::middleware(['auth', 'verified', 'role:subscriber'])->prefix('suscriptor')->name('subscriber.')->group(function () {
+    // Siempre accesibles (sin KYC requerido)
     Route::get('/dashboard', [SubscriberDashboardController::class, 'index'])->name('dashboard');
-    Route::patch('/perfil', [SubscriberDashboardController::class, 'updateContact'])->name('profile.update');
-    Route::get('/favoritos', [SubscriberDashboardController::class, 'favorites'])->name('favorites');
-    Route::delete('/favoritos/{avisoId}', [SubscriberDashboardController::class, 'removeFavorite'])->name('favorites.remove');
     Route::get('/kyc', [SubscriberDashboardController::class, 'kyc'])->name('kyc');
-    Route::get('/resenas', [SubscriberDashboardController::class, 'reviews'])->name('reviews');
-    Route::get('/notificaciones', [SubscriberDashboardController::class, 'notifications'])->name('notifications');
-    Route::get('/reportes', [SubscriberDashboardController::class, 'reports'])->name('reports');
-    Route::post('/reportes', [SubscriberDashboardController::class, 'storeReport'])->name('reports.store');
-    Route::get('/historial-contactos', [SubscriberDashboardController::class, 'contactHistory'])->name('contact.history');
-
-    // Cambio de contraseña
     Route::get('/seguridad', [PasswordChangeController::class, 'showSubscriber'])->name('security');
     Route::post('/seguridad', [PasswordChangeController::class, 'updateSubscriber'])->name('security.update');
+
+    // Requieren KYC aprobado
+    Route::middleware('kyc.approved')->group(function () {
+        Route::patch('/perfil', [SubscriberDashboardController::class, 'updateContact'])->name('profile.update');
+        Route::get('/favoritos', [SubscriberDashboardController::class, 'favorites'])->name('favorites');
+        Route::delete('/favoritos/{avisoId}', [SubscriberDashboardController::class, 'removeFavorite'])->name('favorites.remove');
+        Route::get('/resenas', [SubscriberDashboardController::class, 'reviews'])->name('reviews');
+        Route::get('/notificaciones', [SubscriberDashboardController::class, 'notifications'])->name('notifications');
+        Route::get('/reportes', [SubscriberDashboardController::class, 'reports'])->name('reports');
+        Route::post('/reportes', [SubscriberDashboardController::class, 'storeReport'])->name('reports.store');
+        Route::get('/historial-contactos', [SubscriberDashboardController::class, 'contactHistory'])->name('contact.history');
+    });
 });
 
 // ── Public model profile (MUST be last among /modelo/* routes so that static

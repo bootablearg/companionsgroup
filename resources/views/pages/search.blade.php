@@ -106,6 +106,11 @@ input[type="number"]::placeholder {
         </div>
     </div>
 
+    {{-- Título filtros avanzados --}}
+    <div>
+        <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wide">Filtros avanzados</label>
+    </div>
+
     {{-- Advanced filters (vanilla JS toggle) --}}
     @php
         $hasAdvanced = request()->anyFilled(['service_types','gender','sexual_orientation','age_min','age_max','height_min','height_max','bust_min','bust_max','hair_color','eye_color','skin_color','nationality','is_smoker','is_waxed','has_tattoos','has_piercings','price_min','price_max','idioma','dia']);
@@ -118,7 +123,7 @@ input[type="number"]::placeholder {
                 <path fill-rule="evenodd" d="M7.293 4.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L11.586 10 7.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
             </svg>
             <span style="background:var(--gradient-accent-brand);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
-                Filtros avanzados (Servicios · Características · Datos adicionales · Tarifas)
+                Servicios · Características · Datos adicionales · Tarifas
             </span>
         </button>
 
@@ -292,11 +297,18 @@ input[type="number"]::placeholder {
 
     {{-- Submit --}}
     <div class="flex gap-3 items-center pt-2 border-t border-gray-100">
-        <button type="submit" class="btn-gradient px-6 py-2.5 rounded-full text-sm font-semibold shadow-sm">
+        <button type="submit" class="btn-gradient px-6 py-2.5 rounded-full text-sm font-semibold shadow-sm flex items-center gap-2">
             Buscar
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
         </button>
         @if($searched)
-        <a href="{{ route('search') }}" class="text-sm text-gray-400 hover:text-gray-600 transition-colors">Limpiar filtros</a>
+        <a href="{{ route('search') }}"
+           class="btn-gradient px-6 py-2.5 rounded-full text-sm font-semibold shadow-sm flex items-center gap-2 transition-opacity hover:opacity-75"
+           style="text-decoration:none;">
+            Limpiar filtros
+        </a>
         @endif
     </div>
 
@@ -306,11 +318,6 @@ input[type="number"]::placeholder {
 {{-- ══ RESULTS ══════════════════════════════════════════════════════════════ --}}
 @if(!$searched)
 <div class="text-center py-24">
-    <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-5" style="background:var(--border-default);">
-        <svg class="w-10 h-10 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-        </svg>
-    </div>
     <p class="text-lg font-medium mb-1"
        style="background:var(--gradient-accent-brand);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
         Usá los filtros para encontrar companions

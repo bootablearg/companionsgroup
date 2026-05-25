@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#7C3AED">
+    <title>Cómo publicar tu aviso — Elite Companions</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WRM2QHZH57"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-WRM2QHZH57');
+    </script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --primary: #7C3AED;
+            --accent:  #EC4899;
+            --bg:      #F7F5FF;
+            --surface: #FFFFFF;
+            --border:  #EDE9FE;
+            --border2: #DDD6FE;
+            --text:    #111827;
+            --muted:   #6B7280;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --info:    #3B82F6;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #F3F0FF; }
+        ::-webkit-scrollbar-thumb { background: #C4B5FD; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+        /* ── Header ── */
+        .site-header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 1px 8px rgba(124,58,237,.08);
+        }
+        .site-header img { height: 42px; width: 42px; border-radius: 50%; }
+        .site-header-title {
+            font-size: 1rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .site-header-sub { font-size: 0.75rem; color: var(--muted); }
+
+        /* ── Layout ── */
+        .layout {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 32px 20px 80px;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            text-align: center;
+            padding: 40px 0 32px;
+        }
+        .hero h1 {
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            font-size: 1.05rem;
+            color: var(--muted);
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+        /* ── Table of contents ── */
+        .toc {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 40px;
+        }
+        .toc-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--muted);
+            margin-bottom: 14px;
+        }
+        .toc-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .toc-list a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.9rem;
+            padding: 6px 10px;
+            border-radius: 8px;
+            transition: background .15s, color .15s;
+        }
+        .toc-list a:hover { background: #F5F3FF; color: var(--primary); }
+        .toc-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* ── Sections ── */
+        .section {
+            margin-bottom: 48px;
+            scroll-margin-top: 80px;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .section-number {
+            width: 40px; height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 800;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .section-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .section-subtitle {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        /* ── Card ── */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+
+        /* ── Field docs ── */
+        .field-list { display: flex; flex-direction: column; gap: 0; }
+        .field-item {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 16px;
+        }
+        .field-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .field-item:first-child { padding-top: 0; }
+        .field-label-wrap {}
+        .field-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .badge-req {
+            display: inline-block;
+            background: #F5F3FF;
+            color: var(--primary);
+            border: 1px solid #DDD6FE;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 1px 6px;
+            margin-left: 6px;
+            vertical-align: middle;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+        .badge-opt {
+            display: inline-block;
+            background: #F9FAFB;
+            color: var(--muted);
+            border: 1px solid #E5E7EB;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 1px 6px;
+            margin-left: 6px;
+            vertical-align: middle;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+        .field-type {
+            font-size: 0.72rem;
+            color: var(--muted);
+            margin-top: 3px;
+        }
+        .field-desc { font-size: 0.875rem; color: #374151; }
+        .field-tip {
+            margin-top: 6px;
+            font-size: 0.8rem;
+            color: var(--primary);
+            background: #F5F3FF;
+            border-radius: 6px;
+            padding: 6px 10px;
+        }
+
+        /* ── Alert boxes ── */
+        .alert {
+            border-radius: 12px;
+            padding: 14px 18px;
+            font-size: 0.875rem;
+            margin-bottom: 16px;
+            display: flex;
+            gap: 10px;
+        }
+        .alert-icon { flex-shrink: 0; font-size: 1.1rem; line-height: 1.5; }
+        .alert-info { background: #EFF6FF; border: 1px solid #BFDBFE; color: #1E40AF; }
+        .alert-warning { background: #FFFBEB; border: 1px solid #FDE68A; color: #92400E; }
+        .alert-success { background: #F0FDF4; border: 1px solid #BBF7D0; color: #065F46; }
+        .alert-purple { background: #F5F3FF; border: 1px solid #DDD6FE; color: #5B21B6; }
+
+        /* ── Services grid ── */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 8px;
+        }
+        .service-tag {
+            background: #F9F7FF;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 0.8rem;
+            color: var(--text);
+        }
+        .service-tag.has-opts { border-color: #C4B5FD; background: #F5F3FF; }
+        .service-tag-note { font-size: 0.7rem; color: var(--primary); margin-top: 2px; }
+
+        /* ── Rates table ── */
+        .rates-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .rate-item {
+            background: #F9F7FF;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 16px;
+        }
+        .rate-duration { font-weight: 600; font-size: 0.875rem; color: var(--text); }
+        .rate-desc { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+
+        /* ── Plans table ── */
+        .plans-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        .plans-table th {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #fff;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+        }
+        .plans-table th:first-child { border-radius: 10px 0 0 0; }
+        .plans-table th:last-child { border-radius: 0 10px 0 0; }
+        .plans-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+        .plans-table tr:last-child td { border-bottom: none; }
+        .plans-table tr:nth-child(even) td { background: #FAFAFA; }
+        .check { color: var(--success); font-size: 1rem; }
+        .cross { color: #D1D5DB; }
+        .plan-name { font-weight: 600; color: var(--text); }
+        .plan-price { font-weight: 700; color: var(--primary); }
+
+        /* ── Steps (KYC) ── */
+        .steps { display: flex; flex-direction: column; gap: 16px; }
+        .step {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+        .step-num {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .step-content {}
+        .step-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
+        .step-desc { font-size: 0.85rem; color: #374151; }
+
+        /* ── Media section ── */
+        .media-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .media-card {
+            background: #F9F7FF;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+        }
+        .media-card-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 8px; color: var(--text); }
+        .media-card ul { padding-left: 18px; }
+        .media-card li { font-size: 0.82rem; color: #374151; margin-bottom: 4px; }
+
+        /* ── Divider ── */
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 40px 0;
+        }
+
+        /* ── Footer ── */
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            font-size: 0.8rem;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+        }
+        .footer a { color: var(--primary); text-decoration: none; }
+
+        /* ── Mobile adjustments ── */
+        @media (max-width: 640px) {
+            .field-item { grid-template-columns: 1fr; gap: 6px; }
+            .rates-grid { grid-template-columns: 1fr; }
+            .media-grid { grid-template-columns: 1fr; }
+            .plans-table { font-size: 0.78rem; }
+            .plans-table th, .plans-table td { padding: 8px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+    <img src="logo.webp" alt="Elite Companions">
+    <div>
+        <div class="site-header-title">Elite Companions</div>
+        <div class="site-header-sub">Guía para modelos</div>
+    </div>
+</header>
+
+<div class="layout">
+
+    <!-- Hero -->
+    <div class="hero">
+        <h1>Cómo publicar tu aviso</h1>
+        <p>Guía completa, paso a paso, para crear y completar tu perfil en Elite Companions. Cada campo explicado con ejemplos y consejos.</p>
+    </div>
+
+    <!-- TOC -->
+    <div class="toc">
+        <div class="toc-title">Contenido de esta guía</div>
+        <ul class="toc-list">
+            <li><a href="#kyc"><span class="toc-badge">0</span> Antes de empezar — Verificación KYC</a></li>
+            <li><a href="#basico"><span class="toc-badge">1</span> Información Básica</a></li>
+            <li><a href="#apariencia"><span class="toc-badge">2</span> Apariencia Física</a></li>
+            <li><a href="#servicios"><span class="toc-badge">3</span> Servicios</a></li>
+            <li><a href="#tarifas"><span class="toc-badge">4</span> Tarifas</a></li>
+            <li><a href="#disponibilidad"><span class="toc-badge">5</span> Disponibilidad</a></li>
+            <li><a href="#fotos"><span class="toc-badge">6</span> Fotos y Videos</a></li>
+            <li><a href="#planes"><span class="toc-badge">★</span> Planes de suscripción</a></li>
+        </ul>
+    </div>
+
+    <!-- SECTION 0: KYC -->
+    <div class="section" id="kyc">
+        <div class="section-header">
+            <div class="section-number">0</div>
+            <div>
+                <div class="section-title">Verificación KYC — Paso obligatorio</div>
+                <div class="section-subtitle">Sin KYC aprobado no podés publicar ni editar tu aviso</div>
+            </div>
+        </div>
+
+        <div class="alert alert-warning">
+            <span class="alert-icon">⚠️</span>
+            <div>La verificación KYC es obligatoria antes de publicar. El proceso tarda entre 24 y 48 horas hábiles. Completalo apenas te registres para no perder tiempo.</div>
+        </div>
+
+        <div class="card">
+            <p style="font-size:.9rem;color:#374151;margin-bottom:18px;">El proceso de verificación (KYC — <em>Know Your Customer</em>) confirma que sos una persona real y mayor de edad. Tus datos personales son encriptados con estándar AES-256 y nunca son visibles para los suscriptores. Solo tu "Nombre para mostrar" (alias) aparece en público.</p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Elegí tu documento de identidad</div>
+                        <div class="step-desc">DNI, Pasaporte o Licencia de conducir. El documento tiene que estar vigente y ser legible.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Ingresá tus datos personales</div>
+                        <div class="step-desc">Nombre real, número de documento y fecha de nacimiento. A partir de estos datos el sistema calcula tu edad automáticamente — esa será la edad que figure en tu aviso y no se puede cambiar manualmente.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Selfie con documento</div>
+                        <div class="step-desc">Sacate una foto sosteniendo tu documento de identidad abierto. Tiene que verse tu cara y el documento con claridad. Esta foto se usa solo para verificar tu identidad y nunca es publicada.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Esperá la aprobación</div>
+                        <div class="step-desc">El equipo de moderación revisa tu solicitud. Recibirás una notificación por email y (si lo configuraste) por Telegram cuando esté aprobada.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 1: BÁSICO -->
+    <div class="section" id="basico">
+        <div class="section-header">
+            <div class="section-number">1</div>
+            <div>
+                <div class="section-title">Información Básica</div>
+                <div class="section-subtitle">Tu identidad pública, ubicación y datos de contacto</div>
+            </div>
+        </div>
+
+        <div class="alert alert-purple">
+            <span class="alert-icon">💾</span>
+            <div><strong>El sistema guarda automáticamente.</strong> Al pasar de una solapa a otra, tu progreso se guarda solo. No hace falta guardar manualmente entre solapas — podés completar tu perfil en varias sesiones sin perder nada.</div>
+        </div>
+
+        <div class="card">
+            <div class="field-list">
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Nombre público <span class="badge-req">Obligatorio</span></div>
+                        <div class="field-type">Texto — máx. 100 caracteres</div>
+                    </div>
+                    <div>
+                        <div class="field-desc">Es el nombre con el que vas a aparecer en el sitio. Usá tu nombre artístico o alias. No uses tu nombre real — este campo es completamente público.</div>
+                        <div class="field-tip">💡 Un nombre memorable y breve genera más clics. Evitá números y caracteres especiales.</div>
+                    </div>
+                </div>
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Alias <span class="badge-opt">Opcional</span></div>
+                        <div class="field-type">Texto — máx. 100 caracteres</div>
+                    </div>
+                    <div>
+                        <div class="field-desc">Otro nombre por el que te conocen. Podés poner un apodo alternativo que usan tus clientes habituales.</div>
+                    </div>
+                </div>
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Descripción / Introducción <span class="badge-opt">Opcional</span></div>
+                        <div class="field-type">Texto libre — sin límite de caracteres</div>
+                    </div>
+                    <div>
+                        <div class="field-desc">El texto que se muestra en tu aviso. Es tu presentación: contá quién sos, qué ofrecés y cómo es encontrarse con vos. Sin límite de extensión.</div>
+                        <div class="field-tip">💡 Incluí: qué te hace única, el tipo de encuentro que ofrecés, tu trato/personalidad. Evitá precios en texto libre — para eso está la solapa de Tarifas. Una descripción bien escrita filtra curiosos y atrae contactos serios.</div>
+                    </div>
+                </div>
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Provincia <span class="badge-req">Obligatorio</span></div>
+                        <div class="field-type">Desplegable — 24 provincias de Argentina</div>
+                    </div>
+                    <div>
+                        <div class="field-desc">La provincia donde operás. Los suscriptores filtran por provincia al buscar, así que es clave para que te encuentren.</div>
+                    </div>
+                </div>
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Ciudad <span class="badge-req">Obligatorio</span></div>
+                        <div class="field-type">Desplegable + texto libre</div>
+                    </div>
+                    <div>
+                        <div class="field-desc">Si seleccionás una provincia con ciudades predefinidas, aparecen como opciones. También podés escribir el nombre manualmente eligiendo "✏ Otra ciudad..."</div>
+                    </div>
+                </div>
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Barrio <span class="badge-opt">Opcional</span></div>
+                        <div class="field-type">Desplegable (CABA) o texto libre</div>
+                    </div>
+                    <div>
+                        <div class="field-desc">Para Capital Federal hay una lista de barrios predefinida. Para otras ciudades podés escribirlo a mano. Si preferís no dar tu zona exacta, podés dejarlo vacío.</div>
+                    </div>
+                </div>
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Edad</div>
+                        <div class="field-type">Calculada automáticamente desde el KYC</div>
+                    </div>
+                    <div>
+                        <div class="field-desc">La edad se calcula de forma automática a partir de tu fecha de nacimiento ingresada durante el KYC. Este campo <strong>no se puede modificar manualmente</strong> — así se garantiza que la información es verídica para los suscriptores.</div>
+                    </div>
+                </div>
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Orientación sexual <span class="badge-opt">Opcional</span></div>
+                        <div class="field-type">Desplegable</div>
+                    </div>
+                    <div>
+                        <div class="field-desc">Opciones: Hetero, Bisexual, Gay, Lesbiana. Podés dejarlo en "No especificar".</div>
+                    </div>
+                </div>
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">País de nacimiento <span class="badge-opt">Opcional</span></div>
+                        <div class="field-type">Desplegable — lista completa de países</div>
+                    </div>
+                    <div>
+                        <div class="field-desc">Útil para clientela internacional o para destacar tu origen como parte de tu propuesta. Podés dejarlo en "No especificar".</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Contacto -->
+        <div class="card">
+            <p style="font-size:.875rem;font-weight:600;color:var(--text);margin-bottom:16px;">Contacto del aviso</p>
+            <p style="font-size:.85rem;color:var(--muted);margin-bottom:16px;">Cada canal tiene un toggle (✓/✗) que controla si se muestra o se oculta en tu aviso público. Podés tenerlos cargados y activar/desactivar cuando quieras.</p>
+
+            <div class="field-list">
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Teléfono <span class="badge-opt">Opcional</span></div>
+                        <div class="field-type">Texto — ej: +54 9 11 0000-0000</div>
+                    </div>
+                    <div class="field-desc">Número de teléfono de contacto. Puede ser igual o diferente al WhatsApp. Incluí el código de área.</div>
+                </div>
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">WhatsApp <span class="badge-opt">Opcional</span></div>
+                        <div class="field-type">Texto — ej: +54 9 11 0000-0000</div>
+                    </div>
+                    <div>
+                        <div class="field-desc">Puede ser diferente al teléfono. Si usás un número de WhatsApp distinto al que recibís llamadas, ponelos por separado.</div>
+                        <div class="field-tip">💡 El botón de WhatsApp en tu aviso abre directamente una conversación — es el canal de contacto más usado por los suscriptores.</div>
+                    </div>
+                </div>
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Telegram <span class="badge-opt">Opcional</span></div>
+                        <div class="field-type">Texto — usuario (@usuario) o número</div>
+                    </div>
+                    <div class="field-desc">Podés ingresar tu nombre de usuario de Telegram (con o sin @) o tu número con código de país.</div>
+                </div>
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Email de contacto <span class="badge-opt">Opcional</span></div>
+                        <div class="field-type">Email — se muestra públicamente</div>
+                    </div>
+                    <div class="field-desc">Este email es diferente al email de tu cuenta. Es el que ven los suscriptores para contactarte. Usá un email específico para esto si querés mantener privacidad.</div>
+                </div>
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Instagram <span class="badge-opt">Opcional</span></div>
+                        <div class="field-type">Texto — usuario sin @</div>
+                    </div>
+                    <div class="field-desc">Solo el nombre de usuario, sin el @. Ej: si tu perfil es @nombre, escribís "nombre".</div>
+                </div>
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">TikTok <span class="badge-opt">Opcional</span></div>
+                        <div class="field-type">Texto — usuario sin @</div>
+                    </div>
+                    <div class="field-desc">Solo el nombre de usuario, sin el @.</div>
+                </div>
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">OnlyFans <span class="badge-opt">Opcional</span></div>
+                        <div class="field-type">Texto — usuario</div>
+                    </div>
+                    <div class="field-desc">Tu nombre de usuario de OnlyFans. Se genera automáticamente un enlace a tu perfil.</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Idiomas -->
+        <div class="card">
+            <p style="font-size:.875rem;font-weight:600;color:var(--text);margin-bottom:16px;">Idiomas que hablás <span style="font-size:.8rem;font-weight:400;color:var(--muted);">(hasta 3)</span></p>
+            <div class="field-list">
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Idioma</div>
+                        <div class="field-type">Desplegable — hasta 3 idiomas</div>
+                    </div>
+                    <div>
+                        <div class="field-desc">Opciones: Español, Inglés, Portugués, Francés, Italiano, Alemán, Chino, Japonés, Árabe, Ruso, Coreano, Hebreo, Turco, Hindi, Otro.</div>
+                        <div class="field-tip">💡 Cargar idiomas correctamente es clave para aparecer en búsquedas de turistas internacionales.</div>
+                    </div>
+                </div>
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Nivel</div>
+                        <div class="field-type">Desplegable</div>
+                    </div>
+                    <div class="field-desc">Para cada idioma elegís: <strong>Nativo</strong> (lo hablás desde siempre), <strong>Profesional</strong> (conversación fluida), <strong>Intermedio</strong> (podés comunicarte bien), <strong>Básico</strong> (frases simples).</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 2: APARIENCIA -->
+    <div class="section" id="apariencia">
+        <div class="section-header">
+            <div class="section-number">2</div>
+            <div>
+                <div class="section-title">Apariencia Física</div>
+                <div class="section-subtitle">Los filtros de búsqueda avanzada usan estos datos</div>
+            </div>
+        </div>
+
+        <div class="alert alert-info">
+            <span class="alert-icon">🔍</span>
+            <div>Estos campos alimentan los filtros de búsqueda del sitio. Cuanto más completos estén, más chances tenés de aparecer cuando un suscriptor filtra por características específicas.</div>
+        </div>
+
+        <div class="card">
+            <div class="field-list">
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Género</div>
+                        <div class="field-type">Radio — una opción</div>
+                    </div>
+                    <div>
+                        <div class="field-desc">Opciones: <strong>Femenino, Masculino, Trans, Otro.</strong></div>
+                        <div class="field-tip">💡 Según el género que elijas se habilitan automáticamente campos adicionales de medidas.</div>
+                    </div>
+                </div>
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Altura <span class="badge-opt">Opcional</span></div>
+                        <div class="field-type">Número — en centímetros</div>
+                    </div>
+                    <div class="field-desc">Ejemplo: 165. Solo el número, sin "cm".</div>
+                </div>
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Peso <span class="badge-opt">Opcional</span></div>
+                        <div class="field-type">Número — en kilogramos (entre 30 y 200)</div>
+                    </div>
+                    <div class="field-desc">Ejemplo: 55. Acepta decimales (ej: 57.5).</div>
+                </div>
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Color de ojos <span class="badge-opt">Opcional</span></div>
+                        <div class="field-type">Desplegable</div>
+                    </div>
+                    <div class="field-desc">Opciones: Azules, Café, Celestes, Grises, Marrones, Marrones Claros, Miel, Negros, Pardos, Verdes.</div>
+                </div>
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Color de pelo <span class="badge-opt">Opcional</span></div>
+                        <div class="field-type">Desplegable</div>
+                    </div>
+                    <div class="field-desc">Opciones: Caoba, Castaño, Castaño Oscuro, Negro, Pelirrojo, Rubio, Rubio Platinado.</div>
+                </div>
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Color de tez <span class="badge-opt">Opcional</span></div>
+                        <div class="field-type">Desplegable</div>
+                    </div>
+                    <div class="field-desc">Opciones: Blanca, Bronceada, Morena, Negra, Trigueña.</div>
+                </div>
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Busto / Cintura / Cadera <span class="badge-opt">Opcional</span></div>
+                        <div class="field-type">Números en cm — visible si género es Femenino o Trans</div>
+                    </div>
+                    <div class="field-desc">Medidas en centímetros. Estos campos solo aparecen si seleccionaste Femenino o Trans en Género.</div>
+                </div>
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Largo / Circunferencia <span class="badge-opt">Opcional</span></div>
+                        <div class="field-type">Números en cm — visible si género es Masculino o Trans</div>
+                    </div>
+                    <div class="field-desc">Medidas en centímetros. Solo aparecen si seleccionaste Masculino o Trans en Género.</div>
+                </div>
+
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Hábitos y marcas <span class="badge-opt">Opcional</span></div>
+                        <div class="field-type">Checkboxes — marcá los que aplican</div>
+                    </div>
+                    <div class="field-desc">
+                        <strong>Fumador/a</strong> — si fumás habitualmente.<br>
+                        <strong>Depilado/a</strong> — si te depilás.<br>
+                        <strong>Con tatuajes</strong> — si tenés tatuajes visibles.<br>
+                        <strong>Con piercings</strong> — si tenés piercings visibles.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 3: SERVICIOS -->
+    <div class="section" id="servicios">
+        <div class="section-header">
+            <div class="section-number">3</div>
+            <div>
+                <div class="section-title">Servicios</div>
+                <div class="section-subtitle">Catálogo de más de 50 servicios seleccionables</div>
+            </div>
+        </div>
+
+        <div class="alert alert-success">
+            <span class="alert-icon">✅</span>
+            <div>Seleccionar bien tus servicios filtra los contactos no deseados y ahorra tiempo. El suscriptor ve exactamente qué ofrecés antes de contactarte.</div>
+        </div>
+
+        <div class="card">
+            <p style="font-size:.85rem;color:#374151;margin-bottom:16px;">Cada servicio tiene un checkbox para marcarlo como disponible. Algunos servicios con sub-opciones tienen un desplegable para que especifiques más en detalle.</p>
+
+            <div class="alert alert-purple" style="margin-bottom:20px;">
+                <span class="alert-icon">🔽</span>
+                <div>Los servicios marcados con <strong>opciones</strong> tienen un desplegable adicional para especificar preferencias. Por ejemplo, "Bucal" te permite elegir entre "A gusto tuyo", "Con condón" o "Sin condón".</div>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-tag">Venta de Contenido</div>
+                <div class="service-tag">Encuentros</div>
+                <div class="service-tag">Vaginal</div>
+                <div class="service-tag">Anal</div>
+                <div class="service-tag has-opts">Bucal <div class="service-tag-note">Con opciones ↓</div></div>
+                <div class="service-tag">Sexo oral</div>
+                <div class="service-tag">Garganta profunda</div>
+                <div class="service-tag">Besos de lengua</div>
+                <div class="service-tag">Besos negros</div>
+                <div class="service-tag">Squirting</div>
+                <div class="service-tag">Girlfriend Experience (GFE)</div>
+                <div class="service-tag">Onda novia</div>
+                <div class="service-tag">Porno Experience (PSE)</div>
+                <div class="service-tag">Servicio completo</div>
+                <div class="service-tag">Combinados</div>
+                <div class="service-tag">Fantasías</div>
+                <div class="service-tag">Tríos</div>
+                <div class="service-tag">Lésbico</div>
+                <div class="service-tag">Mujeres y hombres (recibo)</div>
+                <div class="service-tag">Gang bang</div>
+                <div class="service-tag">Orgías / Sexo en grupo</div>
+                <div class="service-tag">Striptease</div>
+                <div class="service-tag">Masturbación mutua</div>
+                <div class="service-tag">Juguetes sexuales</div>
+                <div class="service-tag">Role-playing</div>
+                <div class="service-tag">Cambio de roles</div>
+                <div class="service-tag has-opts">BDSM <div class="service-tag-note">Con opciones ↓</div></div>
+                <div class="service-tag">Fetichismo</div>
+                <div class="service-tag">Fetiche de pies</div>
+                <div class="service-tag">Spanking</div>
+                <div class="service-tag">Fisting</div>
+                <div class="service-tag">Lluvia dorada</div>
+                <div class="service-tag">Lluvia blanca</div>
+                <div class="service-tag">Videollamada / Webcam</div>
+                <div class="service-tag">Sexo telefónico</div>
+                <div class="service-tag">Sexo acuático</div>
+                <div class="service-tag">Sexo al aire libre</div>
+                <div class="service-tag">Sexo en vehículos</div>
+                <div class="service-tag">Sexo con disfraz</div>
+                <div class="service-tag">Sexo con alimentos</div>
+                <div class="service-tag">Departamento propio</div>
+                <div class="service-tag">A domicilio</div>
+                <div class="service-tag">A hoteles</div>
+                <div class="service-tag">Contenido Virtual</div>
+                <div class="service-tag">Masaje erótico</div>
+                <div class="service-tag">Masaje Descontracturante</div>
+                <div class="service-tag">Masaje Deportivo</div>
+                <div class="service-tag">Masaje Drenaje Linfático</div>
+                <div class="service-tag">Masaje con Piedras Calientes</div>
+                <div class="service-tag">Masaje Shiatsu</div>
+                <div class="service-tag">Masaje Sueco</div>
+                <div class="service-tag">Masaje Terapéutico</div>
+                <div class="service-tag">Masaje Thai</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 4: TARIFAS -->
+    <div class="section" id="tarifas">
+        <div class="section-header">
+            <div class="section-number">4</div>
+            <div>
+                <div class="section-title">Tarifas</div>
+                <div class="section-subtitle">Configurá tus precios por duración</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <p style="font-size:.85rem;color:#374151;margin-bottom:20px;">Podés agregar tantas tarifas como quieras. Cada tarifa tiene una duración y un precio. El suscriptor ve todas tus tarifas organizadas en tu aviso.</p>
+
+            <div class="field-list" style="margin-bottom:20px;">
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Duración</div>
+                        <div class="field-type">Desplegable</div>
+                    </div>
+                    <div class="field-desc">Elegís la duración del servicio. Las opciones disponibles son:</div>
+                </div>
+            </div>
+
+            <div class="rates-grid">
+                <div class="rate-item">
+                    <div class="rate-duration">Media hora (1/2 hs)</div>
+                    <div class="rate-desc">30 minutos</div>
+                </div>
+                <div class="rate-item">
+                    <div class="rate-duration">Una hora (1 hs)</div>
+                    <div class="rate-desc">60 minutos</div>
+                </div>
+                <div class="rate-item">
+                    <div class="rate-duration">Dos horas (2 hs)</div>
+                    <div class="rate-desc">120 minutos</div>
+                </div>
+                <div class="rate-item">
+                    <div class="rate-duration">Cuatro horas (4 hs)</div>
+                    <div class="rate-desc">Medio día</div>
+                </div>
+                <div class="rate-item">
+                    <div class="rate-duration">Seis horas (6 hs)</div>
+                    <div class="rate-desc">Jornada extendida</div>
+                </div>
+                <div class="rate-item">
+                    <div class="rate-duration">Pernocte</div>
+                    <div class="rate-desc">Noche completa</div>
+                </div>
+            </div>
+
+            <div class="field-list" style="margin-top:20px;">
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Moneda</div>
+                        <div class="field-type">Desplegable</div>
+                    </div>
+                    <div>
+                        <div class="field-desc">Opciones: <strong>$ ARS</strong> (pesos argentinos), <strong>U$D USD</strong> (dólares), <strong>€ EUR</strong> (euros).</div>
+                        <div class="field-tip">💡 Podés mezclar monedas — por ejemplo cargar una tarifa en ARS y otra en USD para distintos servicios.</div>
+                    </div>
+                </div>
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Precio</div>
+                        <div class="field-type">Número</div>
+                    </div>
+                    <div class="field-desc">El valor del servicio para esa duración. Sin puntos ni símbolos, solo el número.</div>
+                </div>
+            </div>
+
+            <div class="alert alert-purple" style="margin-top:16px;margin-bottom:0;">
+                <span class="alert-icon">➕</span>
+                <div>Usá el botón <strong>"Agregar tarifa"</strong> para sumar nuevas filas. Podés borrar tarifas con el botón ✕ al lado de cada una.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 5: DISPONIBILIDAD -->
+    <div class="section" id="disponibilidad">
+        <div class="section-header">
+            <div class="section-number">5</div>
+            <div>
+                <div class="section-title">Disponibilidad</div>
+                <div class="section-subtitle">Días y horarios en que estás disponible</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <p style="font-size:.85rem;color:#374151;margin-bottom:16px;">Marcá los días de la semana en que trabajás y configurá el rango horario de cada uno. Esto le muestra al suscriptor cuándo puede contactarte.</p>
+
+            <div class="field-list">
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Días</div>
+                        <div class="field-type">Checkbox por día</div>
+                    </div>
+                    <div class="field-desc">Marcá los días en que estás disponible: Lunes, Martes, Miércoles, Jueves, Viernes, Sábado, Domingo. Al marcar un día, aparecen los campos de horario.</div>
+                </div>
+                <div class="field-item">
+                    <div class="field-label-wrap">
+                        <div class="field-label">Horario de inicio / fin</div>
+                        <div class="field-type">Hora — formato HH:MM</div>
+                    </div>
+                    <div>
+                        <div class="field-desc">Para cada día activo ingresás la hora de inicio y la hora de fin. Ejemplo: 14:00 a 22:00.</div>
+                        <div class="field-tip">💡 Si tenés disponibilidad 24hs podés poner 00:00 a 23:59.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 6: FOTOS Y VIDEOS -->
+    <div class="section" id="fotos">
+        <div class="section-header">
+            <div class="section-number">6</div>
+            <div>
+                <div class="section-title">Fotos y Videos</div>
+                <div class="section-subtitle">Tu contenido multimedia — la herramienta más importante de marketing</div>
+            </div>
+        </div>
+
+        <div class="alert alert-warning">
+            <span class="alert-icon">🛡️</span>
+            <div><strong>Marca de agua automática:</strong> en el momento exacto en que subís cada foto, el sistema le aplica automáticamente una marca de agua con el nombre del sitio. Esta protección es irreversible y disuade el robo de contenido, vinculando tus fotos exclusivamente a los dominios oficiales de Elite Companions.</div>
+        </div>
+
+        <div class="media-grid">
+            <div class="media-card">
+                <div class="media-card-title">📸 Foto de perfil</div>
+                <ul>
+                    <li>Una sola foto — es tu imagen principal en el buscador</li>
+                    <li>Formatos: JPG, PNG, WebP</li>
+                    <li>Tamaño máximo: 10 MB</li>
+                    <li>Se puede cambiar en cualquier momento</li>
+                </ul>
+            </div>
+            <div class="media-card">
+                <div class="media-card-title">🖼️ Fotos del aviso</div>
+                <ul>
+                    <li>Hasta 10 fotos en total</li>
+                    <li>Formatos: JPG, PNG, WebP</li>
+                    <li>Tamaño máximo: 10 MB por foto</li>
+                    <li>Podés seleccionar varias a la vez</li>
+                </ul>
+            </div>
+            <div class="media-card">
+                <div class="media-card-title">🔀 Reordenar fotos</div>
+                <ul>
+                    <li>Arrastrá y soltá para cambiar el orden</li>
+                    <li>La primera foto es la portada del aviso</li>
+                    <li>La portada aparece en el listado de búsqueda</li>
+                    <li>Podés eliminar fotos de a una o en grupo</li>
+                </ul>
+            </div>
+            <div class="media-card">
+                <div class="media-card-title">🎬 Videos</div>
+                <ul>
+                    <li>Hasta 3 videos — via enlace de YouTube o Vimeo</li>
+                    <li>Pegá la URL completa del video</li>
+                    <li>El video se incrusta directamente en tu aviso</li>
+                    <li>Recomendamos resolución HD o 4K</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="alert alert-purple" style="margin-top:16px;">
+            <span class="alert-icon">💡</span>
+            <div><strong>Consejo:</strong> subí primero la foto que querés como portada — o después de subir varias, arrastrala a la primera posición. Es la primera impresión que tienen los suscriptores al verte en el buscador.</div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- PLANES -->
+    <div class="section" id="planes">
+        <div class="section-header">
+            <div class="section-number" style="background:linear-gradient(135deg,#F59E0B,#EC4899);">★</div>
+            <div>
+                <div class="section-title">Planes de suscripción</div>
+                <div class="section-subtitle">Activá tu aviso eligiendo el plan que mejor se adapta a vos</div>
+            </div>
+        </div>
+
+        <div class="alert alert-info" style="margin-bottom:20px;">
+            <span class="alert-icon">ℹ️</span>
+            <div>El aviso se activa una vez que el administrador confirma el pago. Para agilizar el proceso, subí el comprobante de transferencia en la sección <strong>Suscripción</strong> de tu dashboard.</div>
+        </div>
+
+        <div class="card" style="padding:0;overflow:hidden;">
+            <table class="plans-table">
+                <thead>
+                    <tr>
+                        <th>Plan</th>
+                        <th>Precio</th>
+                        <th>Duración</th>
+                        <th>Fotos</th>
+                        <th>Videos</th>
+                        <th>Destacado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="plan-name">Mensual Básico</span><br><span style="font-size:.75rem;color:var(--muted);">Renovación manual</span></td>
+                        <td><span class="plan-price">$100.000 ARS</span></td>
+                        <td>30 días</td>
+                        <td>Hasta 10</td>
+                        <td>1</td>
+                        <td><span class="cross">—</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="plan-name">Mensual Básico</span><br><span style="font-size:.75rem;color:var(--muted);">Renovación automática</span></td>
+                        <td><span class="plan-price">$90.000 ARS</span></td>
+                        <td>30 días</td>
+                        <td>Hasta 10</td>
+                        <td>1</td>
+                        <td><span class="cross">—</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="plan-name">Mensual Destacado</span><br><span style="font-size:.75rem;color:var(--muted);">Renovación automática</span></td>
+                        <td><span class="plan-price">$112.500 ARS</span></td>
+                        <td>30 días</td>
+                        <td>Hasta 15</td>
+                        <td>2</td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="plan-name">Mensual Destacado</span><br><span style="font-size:.75rem;color:var(--muted);">Renovación manual</span></td>
+                        <td><span class="plan-price">$125.000 ARS</span></td>
+                        <td>30 días</td>
+                        <td>Hasta 15</td>
+                        <td>1</td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="plan-name">Mensual Destacado + Verificado</span><br><span style="font-size:.75rem;color:var(--muted);">Renovación automática</span></td>
+                        <td><span class="plan-price">$117.000 ARS</span></td>
+                        <td>30 días</td>
+                        <td>Hasta 20</td>
+                        <td>3</td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="plan-name">Mensual Destacado + Verificado</span><br><span style="font-size:.75rem;color:var(--muted);">Renovación manual</span></td>
+                        <td><span class="plan-price">$130.000 ARS</span></td>
+                        <td>30 días</td>
+                        <td>Hasta 20</td>
+                        <td>1</td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="plan-name">Trimestral Básico</span></td>
+                        <td><span class="plan-price">$270.000 ARS</span><br><span style="font-size:.72rem;color:var(--success);">10% de ahorro</span></td>
+                        <td>90 días</td>
+                        <td>Hasta 10</td>
+                        <td>1</td>
+                        <td><span class="cross">—</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="plan-name">Trimestral con destacado</span></td>
+                        <td><span class="plan-price">$337.500 ARS</span><br><span style="font-size:.72rem;color:var(--success);">10% de ahorro</span></td>
+                        <td>90 días</td>
+                        <td>Hasta 15</td>
+                        <td>1</td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="plan-name">Trimestral Destacado + Verificado</span></td>
+                        <td><span class="plan-price">$351.000 ARS</span><br><span style="font-size:.72rem;color:var(--success);">10% de ahorro</span></td>
+                        <td>90 días</td>
+                        <td>Hasta 20</td>
+                        <td>1</td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card" style="margin-top:16px;">
+            <p style="font-size:.875rem;font-weight:600;margin-bottom:12px;">¿Qué significa cada beneficio?</p>
+            <div class="field-list">
+                <div class="field-item">
+                    <div class="field-label-wrap"><div class="field-label">Destacado en la home</div></div>
+                    <div class="field-desc">Tu aviso aparece en la sección "Perfiles destacados" de la página principal, con mayor visibilidad que los perfiles estándar.</div>
+                </div>
+                <div class="field-item">
+                    <div class="field-label-wrap"><div class="field-label">Badge Verificado</div></div>
+                    <div class="field-desc">Tu perfil muestra un distintivo de verificación que genera mayor confianza en los suscriptores y te posiciona mejor en el buscador.</div>
+                </div>
+                <div class="field-item">
+                    <div class="field-label-wrap"><div class="field-label">Renovación automática</div></div>
+                    <div class="field-desc">El plan se renueva automáticamente al vencer, garantizando continuidad sin interrupciones. El precio es menor que la renovación manual.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nota final -->
+    <div class="card" style="background:linear-gradient(135deg,#F5F3FF,#FDF2F8);border-color:#DDD6FE;">
+        <p style="font-size:.9rem;font-weight:700;color:var(--primary);margin-bottom:8px;">¿Necesitás ayuda?</p>
+        <p style="font-size:.85rem;color:#374151;">Si tenés dudas sobre el proceso de carga, el KYC o tu suscripción, contactate con soporte a través del enlace de <a href="https://wa.me/541125545289" style="color:var(--primary);text-decoration:underline;" target="_blank" rel="noopener">WhatsApp</a>, o accedé a <a href="/faq" style="color:var(--primary);text-decoration:underline;">Preguntas Frecuentes</a>.</p>
+    </div>
+
+</div>
+
+<footer class="footer">
+    <p>&copy; 2026 Elite Companions Argentina — <a href="https://argentina.elitecompanions.cc">www.elitecompanions.cc</a></p>
+    <p style="margin-top:6px;">Esta guía es para uso exclusivo de modelos registradas en la plataforma.</p>
+</footer>
+
+</body>
+</html>

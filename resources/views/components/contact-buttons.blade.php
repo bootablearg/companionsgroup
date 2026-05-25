@@ -40,7 +40,7 @@
                     href="{{ $whatsappLink }}"
                     target="_blank"
                     rel="noopener"
-                    class="flex items-center justify-between gap-3 w-full border border-border-default bg-green-900/40 text-green-200 hover:border-green-500 rounded-xl px-4 py-3 text-sm font-semibold transition-all"
+                    class="flex items-center justify-between gap-3 w-full border border-border-default bg-green-900/40 text-contact-whatsapp-text hover:border-green-500 rounded-xl px-4 py-3 text-sm font-semibold transition-all"
                 >
                     <span>WhatsApp</span>
                     <span class="text-green-200">{{ $whatsapp }}</span>

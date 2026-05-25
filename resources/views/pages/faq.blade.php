@@ -2,7 +2,7 @@
 
 @section('title', 'Preguntas Frecuentes — Elite Companions Argentina')
 @section('meta_description', 'Respondemos las preguntas más frecuentes sobre Elite Companions: cómo funciona la plataforma, cómo registrarse, seguridad y privacidad.')
-@section('canonical', 'https://elitecompanions.cc/faq')
+@section('canonical', url('/faq'))
 
 @section('page_style')
 body { background-color: var(--page-background) !important; }
@@ -158,4 +158,21 @@ body { background-color: var(--page-background) !important; }
     </div>
 
 </div>
+
+@php
+    $schemaItems = isset($faqItems) && $faqItems->count() > 0
+        ? $faqItems->map(fn($f) => ['q' => $f->question, 'a' => strip_tags($f->answer)])->toArray()
+        : (isset($staticFaqs) ? array_map(fn($f) => ['q' => $f['q'], 'a' => strip_tags($f['a'])], $staticFaqs) : []);
+    $faqSchema = array_map(fn($f) => [
+        '@type' => 'Question',
+        'name'  => $f['q'],
+        'acceptedAnswer' => ['@type' => 'Answer', 'text' => $f['a']],
+    ], $schemaItems);
+@endphp
+@push('json_ld')
+<script type="application/ld+json">
+{!! json_encode(['@context' => 'https://schema.org', '@type' => 'FAQPage', 'mainEntity' => $faqSchema], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+</script>
+@endpush
+
 @endsection

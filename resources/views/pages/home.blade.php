@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Elite Companions - Argentina | Compañía Premium para Eventos Exclusivos')
-@section('meta_description', 'Escorts elite y acompañantes reales en Buenos Aires. Perfiles verificados, fotos reales, discreción total. Alternativa premium a AreaVIP, ArgentinaBlack, Solo Independientes y Gemidos.')
-@section('canonical', 'https://elitecompanions.cc/')
-@section('og_title', 'Elite Companions - Argentina | Compañía Premium')
-@section('og_description', 'Plataforma premium de compañía social en Argentina. Perfiles exclusivos para eventos, galas y networking. Discreción y elegancia garantizadas.')
-@section('meta_keywords', 'escorts argentina, escorts en argentina, escorts buenos aires, escorts en buenos aires, escorts capital federal, escorts en capital federal, escorts ciudad de buenos aires, escorts en ciudad de buenos aires, putas argentina, putas en argentina, putas buenos aires, putas en buenos aires, putas capital federal, putas ciudad de buenos aires, trolas argentina, trolas en argentina, trolas buenos aires, trolas en buenos aires, atorrantas argentina, atorrantas en argentina, atorrantas buenos aires, atorrantas en buenos aires, mujeres argentina, mujeres buenos aires, mujeres capital federal, trans argentina, trans en argentina, trans buenos aires, trans en buenos aires, trans capital federal, trans ciudad de buenos aires, taxiboy argentina, taxiboy en argentina, taxiboy buenos aires, taxiboy en buenos aires, taxiboy capital federal, taxiboy ciudad de buenos aires, escorts vip argentina, escorts vip en argentina, escorts vip buenos aires, escorts vip en buenos aires, escorts vip capital federal, escorts vip ciudad de buenos aires, putas vip argentina, putas vip buenos aires, trolas vip argentina, trolas vip buenos aires, atorrantas vip argentina, atorrantas vip buenos aires, mujeres vip argentina, mujeres vip buenos aires, trans vip argentina, trans vip buenos aires, taxiboy vip argentina, taxiboy vip buenos aires, AreaVIP, Area-VIP, Area-Vip, areavip argentina, areavip escorts, ArgentinaBlack, argentina black escorts, argentina black vip, ArgentinaXP, argentina xp, argentinaxp escorts, Bairesgirls, Baires Girls, bairesgirls escorts, Gemidos, gemidos escorts argentina, Solo Independientes, SoloIndependientes, soloindependientes escorts, Soy Tuyo, soytuyo escorts, Tacos Altos, TacosAltos, Foro Escorts, ForoEscorts, ForoXP, Foro Pirata, acompañantes argentina, acompañantes buenos aires, acompañantes capital federal, acompañantes vip argentina, acompañantes independientes argentina, escorts independientes argentina, escorts independientes buenos aires, escorts de lujo argentina, escorts premium argentina')
-@section('twitter_title', 'Acompañamiento elegante para eventos exclusivos')
-@section('twitter_description', 'Perfiles elegantes y verificados para galas, presentaciones y cenas formales.')
+@section('title', 'Elite Companions — Modelos y Acompañantes Verificadas en Argentina')
+@section('meta_description', 'Modelos y Escorts de élite premium en Argentina con verificación de identidad real. El único directorio de putas con KYC real. Filtrá por ciudad, disponibilidad, servicio y precio.')
+@section('canonical', 'https://argentina.elitecompanions.cc/')
+@section('og_title', 'Elite Companions — Modelos y Acompañantes Verificadas en Argentina')
+@section('og_description', 'Modelos y Escorts de élite premium en Argentina con verificación de identidad real. El único directorio de putas con KYC real. Perfiles exclusivos, fotos auténticas.')
+@section('meta_keywords', 'modelos escorts argentina, acompañantes verificadas argentina, escorts de elite argentina, acompañantes premium argentina, escorts premium verificadas, escorts con identidad verificada, escorts kyc argentina, modelos acompañantes buenos aires, escorts verificadas argentina, escorts buenos aires, acompañantes premium argentina, escorts premium argentina, companions verificadas argentina, putas argentina, trolas argentina, modelos argentina, ArgentinaXP, BaireGirls, Platymun, Escorts Baires, Escorts Argentina, Area-VIP, Tacos Altos, Solo Independientes, Escorts VIP, Gemidos, ArgentinaBlack, ArgXP')
+@section('twitter_title', 'Elite Companions — Modelos y Acompañantes Verificadas en Argentina')
+@section('twitter_description', 'Modelos y Escorts de élite premium en Argentina con verificación de identidad real. El único directorio de putas con KYC real.')
 
 @push('json_ld')
 <script type="application/ld+json">
@@ -19,8 +19,13 @@
       "@id": "https://elitecompanions.cc/#organization",
       "name": "Elite Companions",
       "url": "https://elitecompanions.cc/",
-      "logo": "https://elitecompanions.cc/images/logo.webp",
-      "description": "Plataforma premium de compañía social para eventos exclusivos en Argentina.",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://elitecompanions.cc/images/logo.webp",
+        "width": 200,
+        "height": 200
+      },
+      "description": "Directorio de Modelos, Escorts y Acompañantes de élite verificadas en Argentina. Identidad real confirmada.",
       "areaServed": "AR",
       "contactPoint": {
         "@type": "ContactPoint",
@@ -36,8 +41,24 @@
       "publisher": {"@id": "https://elitecompanions.cc/#organization"},
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://elitecompanions.cc/search?q={search_term_string}",
+        "target": "https://argentina.elitecompanions.cc/search?q={search_term_string}",
         "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://argentina.elitecompanions.cc/#collectionpage",
+      "url": "https://argentina.elitecompanions.cc/",
+      "name": "Elite Companions — Modelos y Acompañantes Verificadas en Argentina",
+      "description": "Directorio de Modelos, Escorts y Acompañantes de élite verificadas en Argentina. Identidad real confirmada.",
+      "isPartOf": {"@id": "https://elitecompanions.cc/#website"},
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://argentina.elitecompanions.cc/"}]
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://elitecompanions.cc/images/logo.webp"
       }
     }
   ]
@@ -83,7 +104,7 @@
         <div class="md:w-2/3 text-center md:text-left flex flex-col justify-center md:pt-8">
             <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
                 <span style="background:var(--gradient-accent-brand);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
-                    Acompañantes de élite, a tu alcance.
+                    Modelos, Escorts y Acompañantes de élite y verificadas en Argentina.
                 </span>
             </h1>
             <p class="text-lg font-semibold mb-6 leading-relaxed"
@@ -193,7 +214,7 @@
 
                     @if(($aviso->escortProfile?->rating_count ?? 0) > 0)
                     <div class="flex items-center gap-1 mb-2">
-                        <svg class="w-3.5 h-3.5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-3.5 h-3.5 text-rating-star-active-color fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
                         <span class="text-xs font-semibold" style="color:var(--text-primary);">{{ number_format($aviso->escortProfile->rating_avg, 1) }}</span>
                         <span class="text-xs" style="color:var(--text-tertiary);">({{ $aviso->escortProfile->rating_count }})</span>
                     </div>

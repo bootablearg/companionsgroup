@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Entendé cómo funciona el orden de aparición de los avisos en Elite Companions: portada, listado de escorts, modelos, búsquedas y secciones relacionadas.">
+    <meta name="theme-color" content="#7C3AED">
+    <title>¿Cómo aparecen los avisos? — Elite Companions</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WRM2QHZH57"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-WRM2QHZH57');
+    </script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --primary:    #7C3AED;
+            --primary-lt: #EC4899;
+            --bg:         #F7F5FF;
+            --bg-card:    #FFFFFF;
+            --bg-nav:     #FFFFFF;
+            --border:     #EDE9FE;
+            --border2:    #C4B5FD;
+            --text:       #111827;
+            --text-sub:   #6B7280;
+            --muted:      #9CA3AF;
+            --subtle:     rgba(124,58,237,.08);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+        .site-header {
+            background: var(--bg-nav);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            box-shadow: 0 1px 8px rgba(124,58,237,.08);
+        }
+        .site-header img { height: 38px; width: 38px; border-radius: 50%; border: 1px solid var(--border2); }
+        .site-header-title {
+            font-size: .95rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--primary-lt));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .site-header-sub { font-size: .72rem; color: var(--muted); }
+        .site-header-back {
+            margin-left: auto;
+            font-size: 12px;
+            color: var(--muted);
+            text-decoration: none;
+        }
+        .site-header-back:hover { color: var(--primary); }
+
+        .layout {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 48px 20px 80px;
+        }
+
+        .hero { text-align: center; margin-bottom: 48px; }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--border);
+            border: 1px solid var(--border2);
+            border-radius: 999px;
+            padding: 4px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .hero h1 {
+            font-size: clamp(26px,5vw,40px);
+            font-weight: 800;
+            letter-spacing: -.5px;
+            color: var(--text);
+            line-height: 1.15;
+            margin-bottom: 14px;
+        }
+        .hero p { font-size: 15px; color: var(--text-sub); max-width: 500px; margin: 0 auto; line-height: 1.7; }
+
+        .oa-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 4px rgba(124,58,237,.06);
+        }
+        .oa-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--border);
+            border: 1px solid var(--border2);
+            border-radius: 999px;
+            padding: 4px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+        .oa-title { font-size: 20px; font-weight: 700; color: var(--text); margin: 0 0 8px; }
+        .oa-subtitle { font-size: 13px; font-weight: 600; color: var(--primary); margin: 0 0 14px; letter-spacing: .03em; }
+        .oa-body { font-size: 14px; color: var(--text-sub); line-height: 1.7; margin: 0 0 16px; }
+        .oa-body strong { color: var(--text); }
+
+        .oa-rank-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+        .oa-rank-row:last-child { margin-bottom: 0; }
+        .oa-rank-num {
+            flex-shrink: 0;
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            background: var(--subtle);
+            color: var(--primary);
+            font-size: 13px; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .oa-rank-text { font-size: 14px; color: var(--text-sub); line-height: 1.6; }
+        .oa-rank-text strong { color: var(--text); font-weight: 600; }
+        .oa-rank-note { font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
+
+        .oa-pill { display: inline-block; background: var(--subtle); color: var(--primary); border-radius: 6px; font-size: 12px; font-weight: 600; padding: 2px 10px; margin: 0 2px 4px; }
+        .oa-pill-gray { display: inline-block; background: rgba(0,0,0,.05); color: var(--muted); border-radius: 6px; font-size: 12px; font-weight: 600; padding: 2px 10px; margin: 0 2px 4px; }
+
+        .oa-info-box { background: rgba(124,58,237,.05); border-radius: 10px; padding: 14px 16px; border: 1px solid var(--border); }
+        .oa-info-box p { font-size: 12px; color: var(--text-sub); margin: 0; line-height: 1.6; }
+        .oa-info-box strong { color: var(--text); }
+
+        .oa-divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+        .tips-header { margin-bottom: 20px; }
+        .tips-header h2 { font-size: 18px; font-weight: 700; color: var(--text); margin: 0 0 6px; }
+        .tips-header p { font-size: 14px; color: var(--text-sub); line-height: 1.6; margin: 0; }
+
+        .oa-tip-row { display: flex; align-items: flex-start; gap: 10px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+        .oa-tip-row:last-child { border-bottom: none; padding-bottom: 0; }
+        .oa-tip-icon {
+            flex-shrink: 0;
+            width: 32px; height: 32px;
+            border-radius: 8px;
+            background: var(--subtle);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary);
+        }
+        .oa-tip-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+        .oa-tip-desc { font-size: 13px; color: var(--text-sub); line-height: 1.5; }
+
+        .footer-cta { text-align: center; margin-top: 40px; }
+        .footer-cta p { font-size: 14px; color: var(--muted); margin-bottom: 16px; }
+        .cta-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .cta-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 10px; padding: 10px 20px;
+            font-size: 13px; font-weight: 600;
+            color: var(--text-sub); text-decoration: none;
+        }
+        .cta-btn:hover { border-color: var(--border2); color: var(--text); }
+        .cta-btn-primary { background: var(--subtle); border-color: var(--border2); color: var(--primary); }
+        .cta-btn-primary:hover { background: rgba(124,58,237,.15); color: var(--primary); }
+
+        .site-footer { text-align: center; padding: 24px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 40px; }
+        .site-footer a { color: var(--muted); text-decoration: none; }
+        .site-footer a:hover { color: var(--primary); }
+
+        @media (max-width: 600px) {
+            .oa-card { padding: 20px 16px; }
+            .layout { padding: 32px 16px 60px; }
+            .site-header { padding: 12px 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <img src="logo.webp" alt="Elite Companions">
+    <div>
+        <div class="site-header-title">Elite Companions</div>
+        <div class="site-header-sub">Guía de visibilidad</div>
+    </div>
+    <a href="https://argentina.elitecompanions.cc" class="site-header-back">← Volver al sitio</a>
+</header>
+
+<div class="layout">
+
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-badge">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            Guía de visibilidad
+        </div>
+        <h1>¿Cómo aparecen los avisos<br>en Elite Companions?</h1>
+        <p>Dependiendo de dónde te busquen, el orden de aparición de tu aviso sigue distintas reglas. Esta guía te explica cada una para que puedas sacar el máximo provecho.</p>
+    </div>
+
+    <!-- Sección 1: Portada -->
+    <div class="oa-card">
+        <div class="oa-badge">Portada del sitio</div>
+        <h2 class="oa-title">Avisos Destacados</h2>
+        <div class="oa-subtitle">Solo aparecen las modelos seleccionadas por el equipo</div>
+        <p class="oa-body">La portada muestra una cantidad limitada de avisos marcados como <strong>Destacados</strong> por el equipo de Elite Companions. No es una selección automática — el equipo elige quién aparece ahí.</p>
+        <p class="oa-body" style="margin-bottom:14px;">Hay dos tipos de lugares en la portada:</p>
+        <div>
+            <div class="oa-rank-row">
+                <div class="oa-rank-num">A</div>
+                <div class="oa-rank-text"><strong>Posición fija:</strong> el equipo asignó un número de lugar (posición 1, 2, 3…). Esa modelo aparece siempre en ese slot específico.</div>
+            </div>
+            <div class="oa-rank-row">
+                <div class="oa-rank-num">B</div>
+                <div class="oa-rank-text"><strong>Sin posición asignada:</strong> ocupa los lugares libres. Entre estas, aparece primero la que tiene <strong>mayor inversión total en planes activos</strong>. Si hay empate, gana la publicada más recientemente.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección 2: /avisos -->
+    <div class="oa-card">
+        <div class="oa-badge">Listado general — /avisos</div>
+        <h2 class="oa-title">Listado general de avisos</h2>
+        <div class="oa-subtitle">Aparecen todas las modelos con suscripción activa</div>
+        <p class="oa-body">A diferencia de la portada, acá aparecen <strong>todas</strong> las modelos que tienen un plan activo y vigente, sin importar si están destacadas o no. El orden sigue estos tres criterios en cascada:</p>
+        <div style="margin-bottom:16px;">
+            <div class="oa-rank-row">
+                <div class="oa-rank-num">1°</div>
+                <div class="oa-rank-text">
+                    <strong>Inversión total en planes activos</strong> — Se suman todos los planes activos del aviso. La modelo con mayor suma aparece primero.
+                    <span class="oa-rank-note">Ejemplo: dos planes de $100 = $200 total → aparece antes que una sola de $150.</span>
+                </div>
+            </div>
+            <div class="oa-rank-row">
+                <div class="oa-rank-num">2°</div>
+                <div class="oa-rank-text"><strong>Calificación promedio</strong> — Si dos modelos tienen la misma inversión, gana la que tiene mejor puntaje de reseñas.</div>
+            </div>
+            <div class="oa-rank-row">
+                <div class="oa-rank-num">3°</div>
+                <div class="oa-rank-text"><strong>Fecha de publicación</strong> — Si además tienen el mismo puntaje, aparece primero la que publicó su aviso más recientemente.</div>
+            </div>
+        </div>
+        <div class="oa-info-box">
+            <p><strong>Importante:</strong> el plan más caro no siempre gana — lo que importa es la <em>suma</em> de todos los planes activos del aviso. Una modelo con dos planes activos puede superar a una con un solo plan más caro.</p>
+        </div>
+    </div>
+
+    <!-- Sección 3: /modelos -->
+    <div class="oa-card">
+        <div class="oa-badge">Perfiles — /modelos</div>
+        <h2 class="oa-title">Listado de perfiles</h2>
+        <div class="oa-subtitle">Una sola card por modelo, sin importar cuántos avisos tenga</div>
+        <p class="oa-body">El criterio de orden es <strong>exactamente el mismo</strong> que en el listado general (inversión → calificación → fecha de publicación). La diferencia es que si tenés dos avisos activos, solo aparece <strong>uno</strong> — el de mayor inversión en planes.</p>
+        <p class="oa-body" style="margin-bottom:0;">El segundo aviso no desaparece del sistema, simplemente no se muestra en esta sección específica. Sí aparece en el listado general y en los resultados de búsqueda.</p>
+    </div>
+
+    <!-- Sección 4: /search -->
+    <div class="oa-card">
+        <div class="oa-badge">Búsqueda — /search</div>
+        <h2 class="oa-title">Resultados de búsqueda</h2>
+        <div class="oa-subtitle">El visitante filtra, la plataforma ordena</div>
+        <p class="oa-body">Cuando alguien usa el buscador y aplica filtros (ciudad, edad, tipo de servicio, etc.), el sistema muestra solo los avisos que coinciden. El orden de esos resultados sigue el mismo criterio: <span class="oa-pill">Inversión</span> <span class="oa-pill-gray">→</span> <span class="oa-pill">Calificación</span> <span class="oa-pill-gray">→</span> <span class="oa-pill">Fecha</span></p>
+        <p class="oa-body" style="margin-bottom:0;">El visitante también puede cambiar el orden manualmente eligiendo entre: Más recientes, Tarifa más baja/alta, Menor/mayor edad, Mejor calificación, etc. En esos casos el orden depende de la opción que elija, no de los planes.</p>
+    </div>
+
+    <!-- Sección 5: También te puede interesar -->
+    <div class="oa-card">
+        <div class="oa-badge">Dentro de un aviso</div>
+        <h2 class="oa-title">«También te puede interesar»</h2>
+        <div class="oa-subtitle">Sección al pie de cada aviso individual</div>
+        <p class="oa-body" style="margin-bottom:0;">Cuando alguien está viendo el aviso de una modelo, al final de la página aparecen hasta 6 cards de otras modelos de la <strong>misma provincia</strong>. La selección es <strong>aleatoria</strong> — cambia cada vez que se recarga la página y no hay forma de controlar si tu aviso aparece ahí.</p>
+    </div>
+
+    <hr class="oa-divider">
+
+    <!-- Tips -->
+    <div class="tips-header">
+        <h2>¿Qué podés hacer para aparecer más arriba?</h2>
+        <p>Estas acciones tienen impacto directo en tu posición en el listado general, perfiles y búsquedas.</p>
+    </div>
+
+    <div class="oa-card" style="padding:20px 24px;">
+
+        <div class="oa-tip-row">
+            <div class="oa-tip-icon">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <div>
+                <div class="oa-tip-title">Activá un plan de suscripción</div>
+                <div class="oa-tip-desc">Sin suscripción activa tu aviso no aparece en el listado, perfiles ni búsquedas. Es el requisito mínimo.</div>
+            </div>
+        </div>
+
+        <div class="oa-tip-row">
+            <div class="oa-tip-icon">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div>
+                <div class="oa-tip-title">Invertí en un plan de mayor valor</div>
+                <div class="oa-tip-desc">El orden se basa en la <em>suma</em> de todos tus planes activos. A mayor inversión, mejor posición frente a modelos con la misma calificación.</div>
+            </div>
+        </div>
+
+        <div class="oa-tip-row">
+            <div class="oa-tip-icon">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3l14 9-14 9V3z"/></svg>
+            </div>
+            <div>
+                <div class="oa-tip-title">Comprá un lugar en destacadas</div>
+                <div class="oa-tip-desc">La modelo puede comprar por un tiempo determinado un lugar específico dentro de las destacadas de la portada. Este add-on es independiente del plan de suscripción y puede otorgarte un orden de aparición fijo en la home del sitio.</div>
+            </div>
+        </div>
+
+        <div class="oa-tip-row">
+            <div class="oa-tip-icon">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+            </div>
+            <div>
+                <div class="oa-tip-title">Conseguí reseñas positivas</div>
+                <div class="oa-tip-desc">La calificación promedio es el segundo criterio de desempate. Pedile a tus clientes satisfechos que te dejen una reseña en la plataforma.</div>
+            </div>
+        </div>
+
+        <div class="oa-tip-row">
+            <div class="oa-tip-icon">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            </div>
+            <div>
+                <div class="oa-tip-title">Completá tu aviso con fotos y descripción</div>
+                <div class="oa-tip-desc">Un aviso completo genera más clics y reseñas, lo que mejora tu calificación a largo plazo. Además, sin foto de portada tu aviso muestra el logo del sitio.</div>
+            </div>
+        </div>
+
+        <div class="oa-tip-row">
+            <div class="oa-tip-icon">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div>
+                <div class="oa-tip-title">Mantené tu suscripción vigente</div>
+                <div class="oa-tip-desc">Un plan vencido te saca del listado automáticamente. Renovar antes de que venza evita interrupciones en tu visibilidad.</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer CTA -->
+    <div class="footer-cta">
+        <p>¿Tenés más dudas?</p>
+        <div class="cta-links">
+            <a href="https://argentina.elitecompanions.cc/faq" class="cta-btn">Ver preguntas frecuentes</a>
+            <a href="https://argentina.elitecompanions.cc/soporte" class="cta-btn cta-btn-primary">Contactar soporte</a>
+        </div>
+    </div>
+
+</div>
+
+<footer class="site-footer">
+    <p>&copy; 2025 Elite Companions Argentina — <a href="https://argentina.elitecompanions.cc">argentina.elitecompanions.cc</a></p>
+</footer>
+
+</body>
+</html>

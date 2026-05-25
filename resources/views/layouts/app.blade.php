@@ -5,30 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="var(--brand-primary)">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Elite Companions - Argentina')</title>
+    <title>@yield('title', 'Elite Companions — Modelos y Acompañantes Verificadas en Argentina')</title>
     @if(app()->environment('production'))
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     @else
     <meta name="robots" content="noindex, nofollow">
     @endif
-    <meta name="description" content="@yield('meta_description', 'Escorts elite y acompañantes reales en Buenos Aires. Perfiles verificados, fotos reales, discreción total. Alternativa premium a AreaVIP, ArgentinaBlack, Solo Independientes y Gemidos.')">
-    <meta name="keywords" content="@yield('meta_keywords', 'escorts argentina, escorts en argentina, escorts buenos aires, escorts en buenos aires, escorts capital federal, escorts en capital federal, escorts ciudad de buenos aires, escorts en ciudad de buenos aires, putas argentina, putas en argentina, putas buenos aires, putas en buenos aires, putas capital federal, putas ciudad de buenos aires, trolas argentina, trolas en argentina, trolas buenos aires, trolas en buenos aires, atorrantas argentina, atorrantas en argentina, atorrantas buenos aires, atorrantas en buenos aires, mujeres argentina, mujeres buenos aires, mujeres capital federal, trans argentina, trans en argentina, trans buenos aires, trans en buenos aires, trans capital federal, trans ciudad de buenos aires, taxiboy argentina, taxiboy en argentina, taxiboy buenos aires, taxiboy en buenos aires, taxiboy capital federal, taxiboy ciudad de buenos aires, escorts vip argentina, escorts vip en argentina, escorts vip buenos aires, escorts vip en buenos aires, escorts vip capital federal, escorts vip ciudad de buenos aires, putas vip argentina, putas vip buenos aires, trolas vip argentina, trolas vip buenos aires, atorrantas vip argentina, atorrantas vip buenos aires, mujeres vip argentina, mujeres vip buenos aires, trans vip argentina, trans vip buenos aires, taxiboy vip argentina, taxiboy vip buenos aires, AreaVIP, Area-VIP, Area-Vip, areavip argentina, areavip escorts, ArgentinaBlack, argentina black escorts, argentina black vip, ArgentinaXP, argentina xp, argentinaxp escorts, Bairesgirls, Baires Girls, bairesgirls escorts, Gemidos, gemidos escorts argentina, Solo Independientes, SoloIndependientes, soloindependientes escorts, Soy Tuyo, soytuyo escorts, Tacos Altos, TacosAltos, Foro Escorts, ForoEscorts, ForoXP, Foro Pirata, acompañantes argentina, acompañantes buenos aires, acompañantes capital federal, acompañantes vip argentina, acompañantes independientes argentina, escorts independientes argentina, escorts independientes buenos aires, escorts de lujo argentina, escorts premium argentina')">
+    <meta name="description" content="@yield('meta_description', 'Modelos y Escorts de élite premium en Argentina con verificación de identidad real. El único directorio de putas con KYC real. Filtrá por ciudad, disponibilidad, servicio y precio.')">
+    <meta name="keywords" content="@yield('meta_keywords', 'modelos escorts argentina, acompañantes verificadas argentina, escorts de elite argentina, acompañantes premium argentina, escorts premium verificadas, escorts con identidad verificada, escorts verificadas argentina, escorts buenos aires, acompañantes premium argentina, companions verificadas argentina, putas argentina, trolas argentina, ArgentinaXP, BaireGirls, Gemidos, ArgentinaBlack')">
     <link rel="canonical" href="@yield('canonical', url()->current())">
 
     <!-- Open Graph -->
     <meta property="og:type" content="@yield('og_type', 'website')">
-    <meta property="og:title" content="@yield('og_title', 'Elite Companions - Argentina')">
-    <meta property="og:description" content="@yield('og_description', 'Plataforma premium de compañía para eventos exclusivos, galas y networking social.')">
+    <meta property="og:title" content="@yield('og_title', 'Elite Companions — Modelos y Acompañantes Verificadas en Argentina')">
+    <meta property="og:description" content="@yield('og_description', 'Modelos y Escorts de élite premium en Argentina con verificación de identidad real. El único directorio de putas con KYC real.')">
     <meta property="og:url" content="@yield('canonical', url()->current())">
-    <meta property="og:image" content="@yield('og_image', asset('images/logo.webp'))">
+    <meta property="og:image" content="@yield('og_image', asset('images/og-preview.png'))">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:site_name" content="Elite Companions">
     <meta property="og:locale" content="es_AR">
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@yield('twitter_title', 'Elite Companions - Argentina')">
-    <meta name="twitter:description" content="@yield('twitter_description', 'Elegancia y presencia para eventos exclusivos.')">
-    <meta name="twitter:image" content="@yield('og_image', asset('images/logo.webp'))">
+    <meta name="twitter:title" content="@yield('twitter_title', 'Elite Companions — Modelos y Acompañantes Verificadas en Argentina')">
+    <meta name="twitter:description" content="@yield('twitter_description', 'Modelos y Escorts de élite verificadas en Argentina. El único directorio de putas con KYC real.')">
+    <meta name="twitter:image" content="@yield('og_image', asset('images/og-preview.png'))">
 
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" type="image/png" href="/favicon.png">

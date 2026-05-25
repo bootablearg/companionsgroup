@@ -32,11 +32,11 @@
     "name": "{{ $seoCity }}, Argentina"
   },
   @endif
-  "description": "Escort elite independiente en Argentina. Perfil verificado con fotos reales en Elite Companions.",
+  "description": "Escort elite independiente en Argentina. Perfil verificado con fotos reales en {{ config('app.name') }}.",
   "worksFor": {
     "@type": "Organization",
-    "name": "Elite Companions",
-    "url": "https://elitecompanions.cc/"
+    "name": "{{ config('app.name') }}",
+    "url": "{{ url('/') }}"
   }
 }
 </script>
@@ -386,4 +386,15 @@
         </div>
     </div>
 </div>
+@auth
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    fetch('{{ route('contact.track', $aviso) }}', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+        body: JSON.stringify({ type: 'view' })
+    }).catch(function () {});
+});
+</script>
+@endauth
 @endsection
