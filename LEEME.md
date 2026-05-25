@@ -24,19 +24,20 @@ Companions Group es una plataforma B2C de nivel productivo para publicidad de ac
 - **Wizard KYC multipaso** — Carga de documentos + verificación por selfie con almacenamiento encriptado AES-256-CBC de datos personales. Cada modelo es una persona real y verificada.
 - **Gestión completa de avisos** — Editor de autoservicio con 7 pestañas: información básica, apariencia, idiomas, servicios, tarifas, horarios de disponibilidad y multimedia.
 - **Galería multimedia** — Fotos con reordenamiento drag & drop, designación de foto de portada, marca de agua automática, URLs de video embebidas (YouTube/Vimeo/otros) y carga directa de videos.
-- **Gestión de suscripciones** — Permite crear distintos tipos de planes por tiempo y costo; las modelos hacen seguimiento de su plan activo, fechas de facturación y estado de renovación desde su dashboard.
+- **Gestión de suscripciones** — Las modelos hacen seguimiento de su plan activo, fechas de facturación y estado de renovación desde su dashboard.
 - **Notificaciones multicanal** — Campanilla de notificaciones en la app, email transaccional (relay Postfix/Brevo SMTP) y bot de Telegram con vinculación de cuenta en un clic desde el dashboard.
 - **Controles de privacidad** — Toggles de visibilidad por canal (WhatsApp, Telegram, email, teléfono, TikTok, Instagram, OnlyFans). El nombre real y el DNI nunca se exponen públicamente.
 - **Perfil completo** — Página de perfil separada con selectores de ubicación en cascada (país → provincia → ciudad → barrio); todos los cambios se reflejan de inmediato en los listados públicos.
 - **Visibilidad de contacto** — Las modelos eligen qué canales de contacto aparecen en su aviso público mediante toggles individuales por canal.
+- **URLs de aviso con slug SEO** — Cada aviso activo tiene una URL limpia y legible para mejor visibilidad en buscadores.
 
 ### Para Suscriptores (lado de la demanda)
 
 - **Motor de búsqueda avanzada** — Más de 15 filtros simultáneos: ubicación (barrio, ciudad, provincia), tipos de servicio, atributos físicos (altura, peso, medidas, color de ojos/cabello), rango de precios, idioma, hábitos y estado de verificación.
-- **Algoritmo de posicionamiento destacado** — Las modelos con suscripción "destacada" aparecen antes que los listados estándar en todas las búsquedas, así como al enviar reseñas.
+- **Algoritmo de posicionamiento destacado** — Las modelos con suscripción "destacada" aparecen antes que los listados estándar en todas las búsquedas.
 - **Favoritos** — Guardá y revisitá perfiles preferidos entre sesiones.
 - **Sistema de reseñas con doble moderación** — Calificaciones de 1 a 5 estrellas + comentarios de texto. El admin aprueba primero; luego la modelo decide si publicar u ocultar la reseña.
-- **Historial de contactos** — Registro automático de todas las interacciones (toques en WhatsApp, aperturas de Telegram, clics en email, revelaciones de teléfono) por modelo, con log de eventos con timestamp.
+- **Historial de contactos** — Registro automático de todas las interacciones por modelo: toques en WhatsApp, aperturas de Telegram, clics en email, revelaciones de teléfono y vistas de aviso — con log de eventos con timestamp.
 - **Resultados de búsqueda ordenados** — Opciones de ordenamiento por más recientes, destacadas primero o por relevancia.
 
 ### Para Operadores de Plataforma (panel de administración)
@@ -54,6 +55,7 @@ Companions Group es una plataforma B2C de nivel productivo para publicidad de ac
 - **Gestión de usuarios admin** — Crear, editar, activar/desactivar cuentas de administrador con asignación de rol (basic / full / superadmin). Ordenable por ID, estado y último login.
 - **Configuración de integraciones** — Configuración del token del bot de Telegram con panel de prueba en vivo (enviar mensaje de prueba al admin o canal directamente desde la UI).
 - **Tablas ordenables en todo el admin** — Todas las tablas principales del panel (usuarios, KYC, cuentas admin, avisos, suscripciones) soportan ordenamiento multicolumna con indicadores direccionales, persistido entre páginas.
+- **Gestión de blog** — CRUD completo para posts: crear, editar, publicar/archivar, gestionar categorías y etiquetas. Los posts aparecen en la página pública del blog y se indexan en el sitemap.
 - **2FA TOTP** — Google Authenticator obligatorio para todas las sesiones de administración, por login.
 - **Log de auditoría inmutable** — Cada acción de administración registrada con actor, timestamp, IP y valores antes/después.
 
@@ -96,6 +98,14 @@ Todo cambio fluye estrictamente **DEV → QA → PROD**. Cada ambiente tiene su 
 
 La plataforma ejecuta un motor de temas visuales gestionado desde base de datos. En cada request HTTP, el middleware `LoadActiveTheme` obtiene el tema activo (con cache de 24h vía `ThemeService`) e inyecta ~270 propiedades CSS personalizadas en `:root {}`. Todas las vistas referencian únicamente `var(--nombre-token)` — cero colores hardcodeados en todo el código fuente.
 
+### Arquitectura SEO
+
+- **Schema.org JSON-LD** en todas las páginas de aviso públicas (datos estructurados de Person, Service y Review para resultados enriquecidos de Google).
+- **Landing pages por barrio** — 52 páginas por barrio de CABA con contenido geo-orientado, apuntando a búsquedas hiperlocales.
+- **Sitemap dinámico** — Sitemap XML autogenerado que incluye avisos activos, perfiles de modelos, páginas de barrios, páginas estáticas y posts del blog.
+- **Open Graph / Twitter Cards** — Metadata completa og:image, og:title, og:description en todas las páginas públicas.
+- **URLs canónicas** — Tags canónicos correctos en todos los despliegues de marca para evitar contenido duplicado entre dominios.
+
 ---
 
 ## Modelo de datos (35+ tablas)
@@ -114,12 +124,13 @@ users ──< subscriptions  >──────────── subscription_
 users ──< payments
 users ──< reviews        ──────────── escort_profiles
 users ──< favorites      ──────────── avisos
-users ──< contact_links  ──< contact_events
+users ──< contact_links  ──< contact_events   ← manual + tracking automático de vistas (F3)
 
 admin_users ──< audit_logs
             ──< moderation_actions
 
 design_themes ──< token_definitions    ← sistema de temas visuales
+blog_posts >── blog_categories         ← módulo de blog
 site_settings                          ← configuración de la plataforma
 email_templates                        ← plantillas de notificaciones
 faqs                                   ← contenido FAQ segmentado por rol
@@ -177,7 +188,7 @@ Suscriptor envía → Cola de admin → Admin aprueba
 | Acceso admin | Tabla DB + guard separados + TOTP 2FA (Google Authenticator) |
 | Control por rol | `basic` / `full` / `superadmin` — desencriptado de datos personales requiere `full`+ |
 | Formularios | CSRF en todos los endpoints (webhook de Telegram explícitamente excluido) |
-| Fuerza bruta | Rate limiting: 5 intentos de login; 60 req/min en API |
+| Fuerza bruta | Rate limiting en todos los endpoints de autenticación: login web (5/min), registro (5/10min), reseteo de contraseña (5/10min), reenvío de email (3/10min), 2FA challenge (5/5min), reseteo de contraseña admin (5/10min), tracking de vistas (60/min), login API (5/2min), registro API (5/10min) |
 | Headers HTTP | HSTS, X-Frame-Options, X-Content-Type-Options, X-XSS-Protection (Nginx) |
 | Trazabilidad | `audit_logs` inmutable — actor, acción, sujeto, valores antes/después, IP |
 | RGPD | Timestamps de consentimiento explícito y verificación de edad en el registro |
@@ -230,11 +241,16 @@ La capa completa de lógica de negocio se mantiene en repositorios privados por 
 | Tablas admin ordenables (usuarios, KYC, avisos, suscripciones) | ✅ Productivo |
 | Gestión de planes y suscripciones (CRUD admin) | ✅ Productivo |
 | Configuración de integraciones + panel de prueba Telegram | ✅ Productivo |
-| Historial de contactos | ✅ Productivo |
+| Historial de contactos + tracking automático de vistas (F3) | ✅ Productivo |
 | Dashboard de mora | ✅ Productivo |
 | Cron de vencimiento automático (suscripciones cada hora + suspensiones cada 15 min) | ✅ Productivo |
 | Backups automáticos diarios de DB + archivos | ✅ Productivo |
 | SEO técnico (meta, OG, datos estructurados) | ✅ Productivo |
+| Schema.org JSON-LD (Person, Service, Review) | ✅ Productivo |
+| Landing pages por barrio (52 barrios CABA) | ✅ Productivo |
+| Sitemap XML dinámico (avisos + perfiles + barrios + blog) | ✅ Productivo |
+| Módulo de blog (CRUD admin + listado público) | ✅ Productivo |
+| Rate limiting en todos los endpoints de autenticación | ✅ Productivo |
 | PWA (manifest + service worker) | ✅ Productivo |
 | Banner de consentimiento de cookies RGPD | ✅ Productivo |
 | Webhook MercadoPago (verificación de firma + activación automática + recurrente) | ✅ Productivo |
